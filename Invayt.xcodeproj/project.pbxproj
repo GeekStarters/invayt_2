@@ -7,14 +7,96 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF1AB0EF7F7EBF6A1A4B0B21 /* Pods_Invayt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EE9F92F63D56BB14C80A91 /* Pods_Invayt.framework */; };
+		C40CAA7F1DDFD5C700B33264 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CAA7E1DDFD5C700B33264 /* EventInfoViewController.swift */; };
+		C40CAA811DDFE6BA00B33264 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CAA801DDFE6BA00B33264 /* ChatViewController.swift */; };
+		C40CAA831DDFEBA600B33264 /* jsq_messages_sample.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C40CAA821DDFEBA600B33264 /* jsq_messages_sample.m4a */; };
+		C40D01D21DDFC75E0081B303 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40D01D11DDFC75E0081B303 /* EventDetailsViewController.swift */; };
+		C420E0811E1AAD1F002765FF /* FinishAddingEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C420E0801E1AAD1F002765FF /* FinishAddingEventViewController.swift */; };
+		C420E0831E1AADB7002765FF /* ShareDirectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C420E0821E1AADB7002765FF /* ShareDirectViewController.swift */; };
+		C420E0851E1AADBE002765FF /* ShareFollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C420E0841E1AADBE002765FF /* ShareFollowersViewController.swift */; };
+		C423AD841DD6665F00870A85 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C423AD831DD6665F00870A85 /* MainViewController.swift */; };
+		C423AD861DD6687000870A85 /* MyCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C423AD851DD6687000870A85 /* MyCalendarViewController.swift */; };
+		C423AD881DD66A7600870A85 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C423AD871DD66A7600870A85 /* DiscoverViewController.swift */; };
+		C423AD8C1DD66AE300870A85 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C423AD8B1DD66AE300870A85 /* BaseViewController.swift */; };
+		C423AD8E1DD674D100870A85 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C423AD8D1DD674D100870A85 /* CustomTableViewCell.swift */; };
+		C423AD901DD6796C00870A85 /* eventImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C423AD8F1DD6796C00870A85 /* eventImage.jpg */; };
+		C42FC15D1DF1D9AC0003E90C /* InvaytsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FC15C1DF1D9AC0003E90C /* InvaytsViewController.swift */; };
+		C42FC15F1DF1D9C10003E90C /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FC15E1DF1D9C10003E90C /* NotificationsViewController.swift */; };
+		C42FC1611DF1D9D20003E90C /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FC1601DF1D9D20003E90C /* MeViewController.swift */; };
+		C42FC1631DF1DDD00003E90C /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FC1621DF1DDD00003E90C /* AddEventViewController.swift */; };
+		C468E9E71E25431400F6CAA9 /* Invayt.xib in Resources */ = {isa = PBXBuildFile; fileRef = C468E9E61E25431400F6CAA9 /* Invayt.xib */; };
+		C468E9E91E25432300F6CAA9 /* Invayt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468E9E81E25432300F6CAA9 /* Invayt.swift */; };
+		C479E2E71E1B3B410008224D /* DMSwipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479E2E51E1B3B410008224D /* DMSwipeCard.swift */; };
+		C479E2E81E1B3B410008224D /* DMSwipeCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479E2E61E1B3B410008224D /* DMSwipeCardsView.swift */; };
+		C49A1E071DD5378800264FC9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E061DD5378800264FC9 /* GoogleService-Info.plist */; };
+		C49A1E091DD5393300264FC9 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1E081DD5393300264FC9 /* RoundedButton.swift */; };
+		C49A1E0D1DD53BE500264FC9 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E0C1DD53BE500264FC9 /* OpenSans-Regular.ttf */; };
+		C49A1E171DD53BFA00264FC9 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E0E1DD53BFA00264FC9 /* OpenSans-Bold.ttf */; };
+		C49A1E181DD53BFA00264FC9 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E0F1DD53BFA00264FC9 /* OpenSans-BoldItalic.ttf */; };
+		C49A1E191DD53BFA00264FC9 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E101DD53BFA00264FC9 /* OpenSans-ExtraBold.ttf */; };
+		C49A1E1A1DD53BFA00264FC9 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E111DD53BFA00264FC9 /* OpenSans-ExtraBoldItalic.ttf */; };
+		C49A1E1B1DD53BFA00264FC9 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E121DD53BFA00264FC9 /* OpenSans-Italic.ttf */; };
+		C49A1E1C1DD53BFA00264FC9 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E131DD53BFA00264FC9 /* OpenSans-Light.ttf */; };
+		C49A1E1D1DD53BFA00264FC9 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E141DD53BFA00264FC9 /* OpenSans-LightItalic.ttf */; };
+		C49A1E1E1DD53BFA00264FC9 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E151DD53BFA00264FC9 /* OpenSans-Semibold.ttf */; };
+		C49A1E1F1DD53BFA00264FC9 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E161DD53BFA00264FC9 /* OpenSans-SemiboldItalic.ttf */; };
+		C49A1E221DD53F2500264FC9 /* LinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1E211DD53F2500264FC9 /* LinedTextField.swift */; };
+		C49A1E261DD5417B00264FC9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1E251DD5417B00264FC9 /* SignUpViewController.swift */; };
+		C49A1E281DD5498D00264FC9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A1E271DD5498D00264FC9 /* LoginViewController.swift */; };
 		C4BF4DB21DD3B5690087220B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BF4DB11DD3B5690087220B /* AppDelegate.swift */; };
 		C4BF4DB41DD3B5690087220B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BF4DB31DD3B5690087220B /* ViewController.swift */; };
 		C4BF4DB71DD3B5690087220B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4BF4DB51DD3B5690087220B /* Main.storyboard */; };
 		C4BF4DB91DD3B5690087220B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4BF4DB81DD3B5690087220B /* Assets.xcassets */; };
 		C4BF4DBC1DD3B5690087220B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4BF4DBA1DD3B5690087220B /* LaunchScreen.storyboard */; };
+		C4C482CD1E1476F200AF4F17 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C482CC1E1476F200AF4F17 /* SettingsViewController.swift */; };
+		C4DDD5F31DF99D2100D65ED1 /* DateSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDD5F21DF99D2100D65ED1 /* DateSelectorViewController.swift */; };
+		C4E098EA1E143C210071AC04 /* GaleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E098E91E143C210071AC04 /* GaleryViewController.swift */; };
+		C4FB2D651E15AE0F0036C05A /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB2D641E15AE0F0036C05A /* UsersViewController.swift */; };
+		C4FB2D671E15D4050036C05A /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB2D661E15D4050036C05A /* Shared.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77EE9F92F63D56BB14C80A91 /* Pods_Invayt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Invayt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AAD8F11F891358E2EC16E81 /* Pods-Invayt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Invayt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Invayt/Pods-Invayt.debug.xcconfig"; sourceTree = "<group>"; };
+		894B315E602DE4954C380420 /* Pods-Invayt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Invayt.release.xcconfig"; path = "Pods/Target Support Files/Pods-Invayt/Pods-Invayt.release.xcconfig"; sourceTree = "<group>"; };
+		C40CAA7E1DDFD5C700B33264 /* EventInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
+		C40CAA801DDFE6BA00B33264 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		C40CAA821DDFEBA600B33264 /* jsq_messages_sample.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = jsq_messages_sample.m4a; sourceTree = "<group>"; };
+		C40D01D01DDFC6BE0081B303 /* Invayt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Invayt.entitlements; sourceTree = "<group>"; };
+		C40D01D11DDFC75E0081B303 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
+		C420E0801E1AAD1F002765FF /* FinishAddingEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishAddingEventViewController.swift; sourceTree = "<group>"; };
+		C420E0821E1AADB7002765FF /* ShareDirectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareDirectViewController.swift; sourceTree = "<group>"; };
+		C420E0841E1AADBE002765FF /* ShareFollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareFollowersViewController.swift; sourceTree = "<group>"; };
+		C423AD831DD6665F00870A85 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C423AD851DD6687000870A85 /* MyCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCalendarViewController.swift; sourceTree = "<group>"; };
+		C423AD871DD66A7600870A85 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		C423AD8B1DD66AE300870A85 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C423AD8D1DD674D100870A85 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		C423AD8F1DD6796C00870A85 /* eventImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = eventImage.jpg; sourceTree = "<group>"; };
+		C42FC15C1DF1D9AC0003E90C /* InvaytsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaytsViewController.swift; sourceTree = "<group>"; };
+		C42FC15E1DF1D9C10003E90C /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		C42FC1601DF1D9D20003E90C /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		C42FC1621DF1DDD00003E90C /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddEventViewController.swift; path = ../AddEventViewController.swift; sourceTree = "<group>"; };
+		C468E9E61E25431400F6CAA9 /* Invayt.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Invayt.xib; sourceTree = "<group>"; };
+		C468E9E81E25432300F6CAA9 /* Invayt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invayt.swift; sourceTree = "<group>"; };
+		C479E2E51E1B3B410008224D /* DMSwipeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMSwipeCard.swift; sourceTree = "<group>"; };
+		C479E2E61E1B3B410008224D /* DMSwipeCardsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMSwipeCardsView.swift; sourceTree = "<group>"; };
+		C49A1E061DD5378800264FC9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C49A1E081DD5393300264FC9 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		C49A1E0C1DD53BE500264FC9 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		C49A1E0E1DD53BFA00264FC9 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		C49A1E0F1DD53BFA00264FC9 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C49A1E101DD53BFA00264FC9 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		C49A1E111DD53BFA00264FC9 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		C49A1E121DD53BFA00264FC9 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		C49A1E131DD53BFA00264FC9 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		C49A1E141DD53BFA00264FC9 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		C49A1E151DD53BFA00264FC9 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		C49A1E161DD53BFA00264FC9 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		C49A1E211DD53F2500264FC9 /* LinedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinedTextField.swift; sourceTree = "<group>"; };
+		C49A1E251DD5417B00264FC9 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		C49A1E271DD5498D00264FC9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4BF4DAE1DD3B5690087220B /* Invayt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invayt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BF4DB11DD3B5690087220B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4BF4DB31DD3B5690087220B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +104,11 @@
 		C4BF4DB81DD3B5690087220B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4BF4DBB1DD3B5690087220B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C4BF4DBD1DD3B5690087220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4C482CC1E1476F200AF4F17 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C4DDD5F21DF99D2100D65ED1 /* DateSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectorViewController.swift; sourceTree = "<group>"; };
+		C4E098E91E143C210071AC04 /* GaleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaleryViewController.swift; sourceTree = "<group>"; };
+		C4FB2D641E15AE0F0036C05A /* UsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersViewController.swift; path = ../UsersViewController.swift; sourceTree = "<group>"; };
+		C4FB2D661E15D4050036C05A /* Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +116,98 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1AB0EF7F7EBF6A1A4B0B21 /* Pods_Invayt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8584BFC5BFC6D7D337041695 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77EE9F92F63D56BB14C80A91 /* Pods_Invayt.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB904848B941E475AD148559 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7AAD8F11F891358E2EC16E81 /* Pods-Invayt.debug.xcconfig */,
+				894B315E602DE4954C380420 /* Pods-Invayt.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C49A1E0A1DD5393600264FC9 /* Custom Controls */ = {
+			isa = PBXGroup;
+			children = (
+				C479E2E51E1B3B410008224D /* DMSwipeCard.swift */,
+				C479E2E61E1B3B410008224D /* DMSwipeCardsView.swift */,
+				C49A1E081DD5393300264FC9 /* RoundedButton.swift */,
+				C49A1E211DD53F2500264FC9 /* LinedTextField.swift */,
+			);
+			name = "Custom Controls";
+			sourceTree = "<group>";
+		};
+		C49A1E0B1DD5394200264FC9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C40CAA821DDFEBA600B33264 /* jsq_messages_sample.m4a */,
+				C4BF4DB31DD3B5690087220B /* ViewController.swift */,
+				C49A1E251DD5417B00264FC9 /* SignUpViewController.swift */,
+				C468E9E61E25431400F6CAA9 /* Invayt.xib */,
+				C468E9E81E25432300F6CAA9 /* Invayt.swift */,
+				C40CAA7E1DDFD5C700B33264 /* EventInfoViewController.swift */,
+				C4FB2D641E15AE0F0036C05A /* UsersViewController.swift */,
+				C49A1E271DD5498D00264FC9 /* LoginViewController.swift */,
+				C423AD831DD6665F00870A85 /* MainViewController.swift */,
+				C423AD851DD6687000870A85 /* MyCalendarViewController.swift */,
+				C42FC15E1DF1D9C10003E90C /* NotificationsViewController.swift */,
+				C423AD871DD66A7600870A85 /* DiscoverViewController.swift */,
+				C423AD8B1DD66AE300870A85 /* BaseViewController.swift */,
+				C423AD8D1DD674D100870A85 /* CustomTableViewCell.swift */,
+				C40D01D11DDFC75E0081B303 /* EventDetailsViewController.swift */,
+				C4FB2D661E15D4050036C05A /* Shared.swift */,
+				C40CAA801DDFE6BA00B33264 /* ChatViewController.swift */,
+				C42FC15C1DF1D9AC0003E90C /* InvaytsViewController.swift */,
+				C42FC1601DF1D9D20003E90C /* MeViewController.swift */,
+				C42FC1621DF1DDD00003E90C /* AddEventViewController.swift */,
+				C4DDD5F21DF99D2100D65ED1 /* DateSelectorViewController.swift */,
+				C4E098E91E143C210071AC04 /* GaleryViewController.swift */,
+				C4C482CC1E1476F200AF4F17 /* SettingsViewController.swift */,
+				C420E0801E1AAD1F002765FF /* FinishAddingEventViewController.swift */,
+				C420E0821E1AADB7002765FF /* ShareDirectViewController.swift */,
+				C420E0841E1AADBE002765FF /* ShareFollowersViewController.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C49A1E201DD53BFE00264FC9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C49A1E0C1DD53BE500264FC9 /* OpenSans-Regular.ttf */,
+				C49A1E0E1DD53BFA00264FC9 /* OpenSans-Bold.ttf */,
+				C49A1E0F1DD53BFA00264FC9 /* OpenSans-BoldItalic.ttf */,
+				C49A1E101DD53BFA00264FC9 /* OpenSans-ExtraBold.ttf */,
+				C49A1E111DD53BFA00264FC9 /* OpenSans-ExtraBoldItalic.ttf */,
+				C49A1E121DD53BFA00264FC9 /* OpenSans-Italic.ttf */,
+				C49A1E131DD53BFA00264FC9 /* OpenSans-Light.ttf */,
+				C49A1E141DD53BFA00264FC9 /* OpenSans-LightItalic.ttf */,
+				C49A1E151DD53BFA00264FC9 /* OpenSans-Semibold.ttf */,
+				C49A1E161DD53BFA00264FC9 /* OpenSans-SemiboldItalic.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		C4BF4DA51DD3B5690087220B = {
 			isa = PBXGroup;
 			children = (
 				C4BF4DB01DD3B5690087220B /* Invayt */,
 				C4BF4DAF1DD3B5690087220B /* Products */,
+				AB904848B941E475AD148559 /* Pods */,
+				8584BFC5BFC6D7D337041695 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,10 +222,15 @@
 		C4BF4DB01DD3B5690087220B /* Invayt */ = {
 			isa = PBXGroup;
 			children = (
+				C40D01D01DDFC6BE0081B303 /* Invayt.entitlements */,
+				C49A1E061DD5378800264FC9 /* GoogleService-Info.plist */,
+				C49A1E0A1DD5393600264FC9 /* Custom Controls */,
+				C49A1E0B1DD5394200264FC9 /* Views */,
 				C4BF4DB11DD3B5690087220B /* AppDelegate.swift */,
-				C4BF4DB31DD3B5690087220B /* ViewController.swift */,
 				C4BF4DB51DD3B5690087220B /* Main.storyboard */,
+				C423AD8F1DD6796C00870A85 /* eventImage.jpg */,
 				C4BF4DB81DD3B5690087220B /* Assets.xcassets */,
+				C49A1E201DD53BFE00264FC9 /* Fonts */,
 				C4BF4DBA1DD3B5690087220B /* LaunchScreen.storyboard */,
 				C4BF4DBD1DD3B5690087220B /* Info.plist */,
 			);
@@ -71,9 +244,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4BF4DC01DD3B5690087220B /* Build configuration list for PBXNativeTarget "Invayt" */;
 			buildPhases = (
+				E1023B1CA789A871B575E942 /* [CP] Check Pods Manifest.lock */,
 				C4BF4DAA1DD3B5690087220B /* Sources */,
 				C4BF4DAB1DD3B5690087220B /* Frameworks */,
 				C4BF4DAC1DD3B5690087220B /* Resources */,
+				D39416BCDA2EEA218A0EEB06 /* [CP] Embed Pods Frameworks */,
+				F73D1E7791B2075D45ADC204 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,8 +272,14 @@
 				TargetAttributes = {
 					C4BF4DAD1DD3B5690087220B = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = BCF6K6Y7WL;
+						DevelopmentTeam = FSAFW8M25K;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -124,21 +306,110 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C49A1E0D1DD53BE500264FC9 /* OpenSans-Regular.ttf in Resources */,
+				C49A1E1A1DD53BFA00264FC9 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				C49A1E1D1DD53BFA00264FC9 /* OpenSans-LightItalic.ttf in Resources */,
+				C49A1E1E1DD53BFA00264FC9 /* OpenSans-Semibold.ttf in Resources */,
 				C4BF4DBC1DD3B5690087220B /* LaunchScreen.storyboard in Resources */,
+				C49A1E1B1DD53BFA00264FC9 /* OpenSans-Italic.ttf in Resources */,
+				C49A1E171DD53BFA00264FC9 /* OpenSans-Bold.ttf in Resources */,
+				C49A1E191DD53BFA00264FC9 /* OpenSans-ExtraBold.ttf in Resources */,
+				C468E9E71E25431400F6CAA9 /* Invayt.xib in Resources */,
+				C49A1E181DD53BFA00264FC9 /* OpenSans-BoldItalic.ttf in Resources */,
+				C49A1E071DD5378800264FC9 /* GoogleService-Info.plist in Resources */,
+				C49A1E1F1DD53BFA00264FC9 /* OpenSans-SemiboldItalic.ttf in Resources */,
+				C423AD901DD6796C00870A85 /* eventImage.jpg in Resources */,
 				C4BF4DB91DD3B5690087220B /* Assets.xcassets in Resources */,
+				C40CAA831DDFEBA600B33264 /* jsq_messages_sample.m4a in Resources */,
+				C49A1E1C1DD53BFA00264FC9 /* OpenSans-Light.ttf in Resources */,
 				C4BF4DB71DD3B5690087220B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D39416BCDA2EEA218A0EEB06 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Invayt/Pods-Invayt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1023B1CA789A871B575E942 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F73D1E7791B2075D45ADC204 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Invayt/Pods-Invayt-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C4BF4DAA1DD3B5690087220B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E098EA1E143C210071AC04 /* GaleryViewController.swift in Sources */,
+				C479E2E71E1B3B410008224D /* DMSwipeCard.swift in Sources */,
+				C420E0811E1AAD1F002765FF /* FinishAddingEventViewController.swift in Sources */,
+				C42FC1611DF1D9D20003E90C /* MeViewController.swift in Sources */,
+				C4C482CD1E1476F200AF4F17 /* SettingsViewController.swift in Sources */,
+				C4FB2D651E15AE0F0036C05A /* UsersViewController.swift in Sources */,
+				C40D01D21DDFC75E0081B303 /* EventDetailsViewController.swift in Sources */,
+				C423AD881DD66A7600870A85 /* DiscoverViewController.swift in Sources */,
+				C423AD861DD6687000870A85 /* MyCalendarViewController.swift in Sources */,
+				C420E0851E1AADBE002765FF /* ShareFollowersViewController.swift in Sources */,
+				C479E2E81E1B3B410008224D /* DMSwipeCardsView.swift in Sources */,
+				C423AD8E1DD674D100870A85 /* CustomTableViewCell.swift in Sources */,
+				C423AD841DD6665F00870A85 /* MainViewController.swift in Sources */,
+				C49A1E281DD5498D00264FC9 /* LoginViewController.swift in Sources */,
+				C42FC1631DF1DDD00003E90C /* AddEventViewController.swift in Sources */,
+				C42FC15D1DF1D9AC0003E90C /* InvaytsViewController.swift in Sources */,
+				C49A1E221DD53F2500264FC9 /* LinedTextField.swift in Sources */,
+				C4DDD5F31DF99D2100D65ED1 /* DateSelectorViewController.swift in Sources */,
+				C420E0831E1AADB7002765FF /* ShareDirectViewController.swift in Sources */,
+				C423AD8C1DD66AE300870A85 /* BaseViewController.swift in Sources */,
 				C4BF4DB41DD3B5690087220B /* ViewController.swift in Sources */,
+				C468E9E91E25432300F6CAA9 /* Invayt.swift in Sources */,
+				C40CAA7F1DDFD5C700B33264 /* EventInfoViewController.swift in Sources */,
+				C40CAA811DDFE6BA00B33264 /* ChatViewController.swift in Sources */,
+				C49A1E091DD5393300264FC9 /* RoundedButton.swift in Sources */,
 				C4BF4DB21DD3B5690087220B /* AppDelegate.swift in Sources */,
+				C49A1E261DD5417B00264FC9 /* SignUpViewController.swift in Sources */,
+				C42FC15F1DF1D9C10003E90C /* NotificationsViewController.swift in Sources */,
+				C4FB2D671E15D4050036C05A /* Shared.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,25 +530,32 @@
 		};
 		C4BF4DC11DD3B5690087220B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AAD8F11F891358E2EC16E81 /* Pods-Invayt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BCF6K6Y7WL;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Invayt/Invayt.entitlements;
+				DEVELOPMENT_TEAM = FSAFW8M25K;
 				INFOPLIST_FILE = Invayt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vincentvillalta.Invayt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Invayt.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		C4BF4DC21DD3B5690087220B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 894B315E602DE4954C380420 /* Pods-Invayt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BCF6K6Y7WL;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Invayt/Invayt.entitlements;
+				DEVELOPMENT_TEAM = FSAFW8M25K;
 				INFOPLIST_FILE = Invayt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = vincentvillalta.Invayt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Invayt.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -302,6 +580,7 @@
 				C4BF4DC21DD3B5690087220B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

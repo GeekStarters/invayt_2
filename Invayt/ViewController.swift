@@ -23,3 +23,6 @@ class ViewController: UIViewController {
 
 }
 
+class CustomTabBar: UITabBarController{
+    
+}
