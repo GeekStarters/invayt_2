@@ -12,6 +12,8 @@ import FirebaseDatabase
 import FirebaseAuth
 import Firebase
 import FBSDKLoginKit
+import TwitterKit
+
 class SignUpViewController: UIViewController {
 
     @IBOutlet weak var userName: LinedTextField!
@@ -25,7 +27,19 @@ class SignUpViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
     }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+
     
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -56,7 +70,22 @@ class SignUpViewController: UIViewController {
     
 
     @IBAction func twitterSignUp(_ sender: Any) {
-        
+        Twitter.sharedInstance().logIn { (session, error) in
+            if (session != nil) {
+                let credential = FIRTwitterAuthProvider.credential(withToken: session!.authToken, secret: session!.authTokenSecret)
+                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+                    if (error != nil) {
+                        SWMessage.sharedInstance.showNotificationWithTitle("Error", subtitle: error?.localizedDescription, type: .error)
+                    }else{
+                        self.saveUserToDb(key: FIRAuth.auth()!.currentUser!.uid, name: FIRAuth.auth()!.currentUser!.displayName!, email:FIRAuth.auth()!.currentUser!.email!, image: FIRAuth.auth()!.currentUser!.photoURL!.absoluteString)
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+            }else {
+                print("error: \(error?.localizedDescription)");
+            }
+        }
     }
 
     @IBAction func facebookSignUp(_ sender: Any) {

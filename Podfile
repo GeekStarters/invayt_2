@@ -12,6 +12,9 @@ target 'Invayt' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
   pod 'JSQMessagesViewController'
   pod "GMStepper"
   pod 'Fusuma'
@@ -24,5 +27,17 @@ target 'Invayt' do
   pod 'ADMozaicCollectionViewLayout', '~> 2.0'
   pod 'LUNSegmentedControl'
   pod 'SJSegmentedScrollView'
-  
+  pod "BubblePictures"
+  pod 'Font-Awesome-Swift', '~> 1.6.1'
+  pod 'Fabric'
+  pod 'TwitterKit'
+  pod 'Branch'
+  pod 'Firebase/Crash'
+  pod 'Bugsee'
+  pod 'Bugsnag'
+
+end
+
+target 'InvaytNotificationServiceExtension' do
+  pod 'OneSignal', '>= 2.5.2', '< 3.0'
 end

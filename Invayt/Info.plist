@@ -21,16 +21,55 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>invayt</string>
 				<string>fb1054652314600611</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>invayt</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>25</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>9a05eb47af5162336116e15d931426dd1db6c1c4</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>consumerKey</key>
+					<string>l8F9hNhA7eWDRtlzIcHHwrdGM</string>
+					<key>consumerSecret</key>
+					<string>qDKzKBVq5rZbNOFyljBhU5FQEpJXHdAyDpz2AsdskidhfblM3G</string>
+				</dict>
+				<key>KitName</key>
+				<string>Twitter</string>
+			</dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>branch_key</key>
+					<string>key_live_fcsxBVFDb5imtwTqn9xNnnfmsCgmQzkx</string>
+				</dict>
+				<key>KitName</key>
+				<string>Branch</string>
+			</dict>
+		</array>
+	</dict>
 	<key>FacebookAppID</key>
 	<string>1054652314600611</string>
 	<key>FacebookDisplayName</key>
 	<string>Invayt</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -56,6 +95,10 @@
 		<string>OpenSans-Semibold.ttf</string>
 		<string>OpenSans-Regular.ttf</string>
 		<string>OpenSans-SemiboldItalic.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

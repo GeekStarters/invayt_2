@@ -95,17 +95,41 @@ class EventDetailsViewController: UIViewController, PKAddPassesViewControllerDel
     }
     
     
+    @IBAction func openMap(_ sender: Any) {
+        if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+            var cc = self.event["geolocation"] as! [Double]
+            if cc.isEmpty {
+                UIApplication.shared.open(URL(string:"comgooglemaps://?center=\(cc[0]),\(cc[1])&zoom=14")!, options: [:], completionHandler: { (completed) in })
+            } else {
+                UIApplication.shared.open(URL(string:"comgooglemaps://?q=\(self.event["locationLocalizable"] as! String)&zoom=14")!, options: [:], completionHandler: { (completed) in })
+            }
+        } else {
+            print("Can't use comgooglemaps://");
+            var cc = self.event["geolocation"] as! [Double]
+            print(self.event)
+            if cc.isEmpty {
+                UIApplication.shared.open(URL(string:"http://maps.apple.com/?ll=\(cc[0]),\(cc[1])")!, options: [:], completionHandler: { (completed) in })
+            } else {
+                UIApplication.shared.open(URL(string:"http://maps.apple.com/?address=\(self.event["locationLocalizable"] as! String)")!, options: [:], completionHandler: { (completed) in })
+            }
+        }
+    }
+    
     @IBAction func attending(_ sender: Any) {
         let key = self.fbEvent.key
         if let attendees = self.event["attendees"] as? NSMutableArray {
             attendees.add(FIRAuth.auth()?.currentUser!.uid)
             let childUpdates = ["/events/\(key)/attendees": attendees]
             ref.updateChildValues(childUpdates)
+            SVProgressHUD.showSuccess(withStatus: "Done")
+            self.navigationController?.popViewController(animated: true)
         } else {
             let attendees : NSMutableArray = []
             attendees.add(FIRAuth.auth()?.currentUser!.uid)
             let childUpdates = ["/events/\(key)/attendees": attendees]
             ref.updateChildValues(childUpdates)
+            SVProgressHUD.showSuccess(withStatus: "Done")
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

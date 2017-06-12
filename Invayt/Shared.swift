@@ -10,16 +10,27 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import SDWebImage
+import OneSignal
 public func pushNotificationToUser(userTo: FIRDataSnapshot, content: String){
     var ref: FIRDatabaseReference!
     ref = FIRDatabase.database().reference()
-    var notification = [
+    let userDictionary = userTo.value as! [String : AnyObject]
+    let notification = [
         "content": content,
         "timestamp": "\(Date().timeIntervalSince1970)"
     ]
+    let cleanContent : String = content.html2String
     ref.child("notifications").child(userTo.key).childByAutoId().setValue(notification, withCompletionBlock: { (error, reference) in
         if error == nil {
             print("Notification created")
+            if userDictionary["token"] != nil {
+                OneSignal.postNotification(["contents": ["en": cleanContent], "include_player_ids": [userDictionary["token"] as! String], "data": ["objectId":"123"]], onSuccess: { (sucess) in
+                    print(sucess)
+                }, onFailure: { (error) in
+                    print(error)
+                })
+            }
+            
         } else {
             print(error ?? "Unkown error")
         }

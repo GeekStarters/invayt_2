@@ -12,7 +12,7 @@ import FirebaseDatabase
 class EventInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var image: UIImage!
     var fbEvent: FIRDataSnapshot!
-    var options = ["Event info", "Event conversation", "Media", "Mute", "Participant list"]
+    var options = ["Event info", "Event conversation", "Media", "Mute", "Participant list", "Share"]
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +55,11 @@ class EventInfoViewController: UIViewController, UITableViewDataSource, UITableV
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UsersViewController") as! UsersViewController
             vc.fbEvent = self.fbEvent
             vc.isShowingParticipantList = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == 5 {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FinishAddingEventViewController") as! FinishAddingEventViewController
+            vc.createdEvent = self.fbEvent.ref
+            vc.image = self.image
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

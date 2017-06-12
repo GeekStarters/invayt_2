@@ -62,7 +62,7 @@ class MyCalendarViewController: BaseViewController, UITableViewDataSource, UITab
             for item in snapshot.children {
                 let event = (item as! FIRDataSnapshot).value as! [String : AnyObject]
                 if let att = event["attendees"] as? [String] {
-                    if att.contains((FIRAuth.auth()?.currentUser!.uid)!) {
+                    if att.contains((FIRAuth.auth()?.currentUser!.uid)!) && (event["timestamp"] as! Double > Date().timeIntervalSince1970){
                         newItems.append(item as! FIRDataSnapshot)
                     }
 

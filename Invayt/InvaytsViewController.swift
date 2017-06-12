@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 import Firebase
 import FirebaseDatabase
-class InvaytsViewController: UIViewController {
+class InvaytsViewController: BaseViewController {
     @IBOutlet weak var stackView: UIStackView!
     
 
@@ -23,32 +23,47 @@ class InvaytsViewController: UIViewController {
         self.view.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         self.ref = FIRDatabase.database().reference()
         self.getEvents()
-        
+        self.title = "Invayts"
         let viewGenerator: (FIRDataSnapshot, CGRect) -> (UIView) = { (element: FIRDataSnapshot, frame: CGRect) -> (UIView) in
             let container : Invayt = Invayt(frame: CGRect(x: 30, y: 0, width: frame.width - 60, height: frame.height - 100))
             let invayt = element.value as! [String : AnyObject]
             print(invayt)
             
-            let date = NSDate(timeIntervalSince1970: (invayt["timestamp"] as! Double)) as Date
-            let df = DateFormatter()
-            df.dateStyle = .none
-            df.timeStyle = .short
-            container.time.text = df.string(from: date)
+            self.ref.child("events/\(invayt["key"]!)").observeSingleEvent(of: .value, with: {(snapshot) -> Void in
+                let content = snapshot.value as! [String : AnyObject]
+                let date = NSDate(timeIntervalSince1970: (content["timestamp"] as! Double)) as Date
+                let df = DateFormatter()
+                df.dateStyle = .none
+                df.timeStyle = .short
+                container.time.text = df.string(from: date)
+                
+                let df2 = DateFormatter()
+                df2.dateFormat = "dd"
+                container.day.text = df2.string(from: date)
+                
+                let df3 = DateFormatter()
+                df3.dateFormat = "MMM"
+                container.month.text = df3.string(from: date).uppercased()
+                
+                container.bigImage.sd_setImage(with: URL(string:content["image"] as! String))
+                
+                container.hostedBy.text = "Hosted by \(content["authorName"]!)"
+                
+                container.location.text = content["locationLocalizable"] as? String
+                container.eventcontent.text = content["description"] as? String
+                container.name.text = content["name"] as? String
+                
+            })
             
-            let df2 = DateFormatter()
-            df2.dateFormat = "dd"
-            container.day.text = df2.string(from: date)
-            
-            let df3 = DateFormatter()
-            df3.dateFormat = "MMM"
-            container.month.text = df3.string(from: date).uppercased()
-            
-            container.bigImage.sd_setImage(with: URL(string:invayt["image"] as! String))
-            
-            container.hostedBy.text = "Hosted by \(invayt["authorName"]!)"
-            
-            container.location.text = invayt["locationLocalizable"] as? String
-            container.eventcontent.text = invayt["description"] as? String
+            self.ref.child("Users/\(invayt["userFrom"] as! String)").observeSingleEvent(of: .value, with: {(snapshot) -> Void in
+                let invayter = snapshot.value as! [String : AnyObject]
+                container.invayterName.text = invayter["name"] as? String
+                if invayt["photoURL"] as? String != nil {
+                    container.invayterImage.sd_setImage(with: URL(string:invayter["photoURL"] as! String))
+                } else {
+                    container.invayterImage.removeFromSuperview()
+                }
+            })
             
             container.layer.shadowRadius = 4
             container.layer.shadowOpacity = 1.0
@@ -67,7 +82,7 @@ class InvaytsViewController: UIViewController {
             label.layer.cornerRadius = label.frame.width / 2
             label.backgroundColor = mode == .left ? UIColor.red : UIColor.green
             label.clipsToBounds = true
-            label.text = mode == .left ? "👍" : "👎"
+            label.text = mode == .left ? "👎" : "👍"
             label.font = UIFont.systemFont(ofSize: 24)
             label.textAlignment = .center
             return label
@@ -84,12 +99,11 @@ class InvaytsViewController: UIViewController {
     }
 
     @IBAction func decline(_ sender: Any) {
-        self.swipeView.swipeTopCardLeft()
         
     }
     
     @IBAction func accept(_ sender: Any) {
-        self.swipeView.swipeTopCardRight()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -106,18 +120,15 @@ class InvaytsViewController: UIViewController {
                 let invayt = item as! FIRDataSnapshot
                 let object = invayt.value as! [String: String]
                 if object["userTo"] == FIRAuth.auth()?.currentUser!.uid {
-                    
+                    self.swipeView.addCards([invayt])
+                    self.stackView.isHidden = false
                     //var elements = []
-                    self.ref.child("events/\(object["key"]!)").observeSingleEvent(of: .value, with: {(snapshot) -> Void in
-                        self.swipeView.addCards([snapshot])
-                        self.stackView.isHidden = false
-                    })
+                    
                 }
                 
             }
         })
     }
-    
     
 
 }
@@ -130,15 +141,8 @@ extension InvaytsViewController: DMSwipeCardsViewDelegate {
     func swipedLeft(_ object: Any) {
         let iObject = object as! FIRDataSnapshot
         print("Swiped left: \(object)")
-        self.ref.child("invayts").queryOrdered(byChild: "timestamp").observe(.value, with: {(snapshot) -> Void in
-            for item in snapshot.children {
-                let invayt = item as! FIRDataSnapshot
-                let object = invayt.value as! [String: String]
-                if object["key"] ==  iObject.key{
-                    self.ref.child("invayts/\(invayt.key)").removeValue()
-                }
-            }
-        })
+        let key = iObject.key
+        self.ref.child("invayts/\(key)").removeValue()
     }
     
     func swipedRight(_ object: Any) {

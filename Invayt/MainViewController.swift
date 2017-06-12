@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Branch
 class MainViewController: UITabBarController {
 
     override func viewDidLoad() {
@@ -29,6 +29,21 @@ class MainViewController: UITabBarController {
         
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: unselectedColor], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: selectedColor], for: .selected)
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Read the deep link paramters from the link
+        let sessionParams = Branch.getInstance().getLatestReferringParams()
+        //let itemId = sessionParams["item_id"]
+        guard let isItemPresent = sessionParams?["item_id"] as? Bool else { return }
+        if isItemPresent {
+            // from here, you'd load the appropriate item from the item id
+            print("Deep linked to page from Branch link with item id: %@", sessionParams?["item_id"])
+        }
+
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A61C688F102B0C2FBCF7AA8C /* Pods_InvaytNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEB49AF5701A176A1E4F577 /* Pods_InvaytNotificationServiceExtension.framework */; };
 		AF1AB0EF7F7EBF6A1A4B0B21 /* Pods_Invayt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EE9F92F63D56BB14C80A91 /* Pods_Invayt.framework */; };
 		C40CAA7F1DDFD5C700B33264 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CAA7E1DDFD5C700B33264 /* EventInfoViewController.swift */; };
 		C40CAA811DDFE6BA00B33264 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CAA801DDFE6BA00B33264 /* ChatViewController.swift */; };
@@ -27,6 +28,8 @@
 		C42FC1631DF1DDD00003E90C /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42FC1621DF1DDD00003E90C /* AddEventViewController.swift */; };
 		C468E9E71E25431400F6CAA9 /* Invayt.xib in Resources */ = {isa = PBXBuildFile; fileRef = C468E9E61E25431400F6CAA9 /* Invayt.xib */; };
 		C468E9E91E25432300F6CAA9 /* Invayt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468E9E81E25432300F6CAA9 /* Invayt.swift */; };
+		C4723B621EBBD11700F6D44E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4723B611EBBD11700F6D44E /* NotificationService.swift */; };
+		C4723B661EBBD11700F6D44E /* InvaytNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C4723B5F1EBBD11700F6D44E /* InvaytNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C479E2E71E1B3B410008224D /* DMSwipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479E2E51E1B3B410008224D /* DMSwipeCard.swift */; };
 		C479E2E81E1B3B410008224D /* DMSwipeCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479E2E61E1B3B410008224D /* DMSwipeCardsView.swift */; };
 		C49A1E071DD5378800264FC9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C49A1E061DD5378800264FC9 /* GoogleService-Info.plist */; };
@@ -56,10 +59,36 @@
 		C4FB2D671E15D4050036C05A /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB2D661E15D4050036C05A /* Shared.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C4723B641EBBD11700F6D44E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4BF4DA61DD3B5690087220B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4723B5E1EBBD11700F6D44E;
+			remoteInfo = InvaytNotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C4723B3C1EBBD05700F6D44E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C4723B661EBBD11700F6D44E /* InvaytNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5AEB49AF5701A176A1E4F577 /* Pods_InvaytNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InvaytNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77EE9F92F63D56BB14C80A91 /* Pods_Invayt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Invayt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AAD8F11F891358E2EC16E81 /* Pods-Invayt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Invayt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Invayt/Pods-Invayt.debug.xcconfig"; sourceTree = "<group>"; };
 		894B315E602DE4954C380420 /* Pods-Invayt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Invayt.release.xcconfig"; path = "Pods/Target Support Files/Pods-Invayt/Pods-Invayt.release.xcconfig"; sourceTree = "<group>"; };
+		8CE2EADFD2FFB7BCBFD090E8 /* Pods-InvaytNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvaytNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-InvaytNotificationServiceExtension/Pods-InvaytNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		C40CAA7E1DDFD5C700B33264 /* EventInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		C40CAA801DDFE6BA00B33264 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C40CAA821DDFEBA600B33264 /* jsq_messages_sample.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = jsq_messages_sample.m4a; sourceTree = "<group>"; };
@@ -80,6 +109,9 @@
 		C42FC1621DF1DDD00003E90C /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddEventViewController.swift; path = ../AddEventViewController.swift; sourceTree = "<group>"; };
 		C468E9E61E25431400F6CAA9 /* Invayt.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Invayt.xib; sourceTree = "<group>"; };
 		C468E9E81E25432300F6CAA9 /* Invayt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invayt.swift; sourceTree = "<group>"; };
+		C4723B5F1EBBD11700F6D44E /* InvaytNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = InvaytNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4723B611EBBD11700F6D44E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		C4723B631EBBD11700F6D44E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C479E2E51E1B3B410008224D /* DMSwipeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMSwipeCard.swift; sourceTree = "<group>"; };
 		C479E2E61E1B3B410008224D /* DMSwipeCardsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMSwipeCardsView.swift; sourceTree = "<group>"; };
 		C49A1E061DD5378800264FC9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -109,9 +141,18 @@
 		C4E098E91E143C210071AC04 /* GaleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaleryViewController.swift; sourceTree = "<group>"; };
 		C4FB2D641E15AE0F0036C05A /* UsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersViewController.swift; path = ../UsersViewController.swift; sourceTree = "<group>"; };
 		C4FB2D661E15D4050036C05A /* Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
+		DA854B7720B3268C2163CC68 /* Pods-InvaytNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvaytNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InvaytNotificationServiceExtension/Pods-InvaytNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C4723B5C1EBBD11700F6D44E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A61C688F102B0C2FBCF7AA8C /* Pods_InvaytNotificationServiceExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4BF4DAB1DD3B5690087220B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -127,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				77EE9F92F63D56BB14C80A91 /* Pods_Invayt.framework */,
+				5AEB49AF5701A176A1E4F577 /* Pods_InvaytNotificationServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,8 +178,19 @@
 			children = (
 				7AAD8F11F891358E2EC16E81 /* Pods-Invayt.debug.xcconfig */,
 				894B315E602DE4954C380420 /* Pods-Invayt.release.xcconfig */,
+				DA854B7720B3268C2163CC68 /* Pods-InvaytNotificationServiceExtension.debug.xcconfig */,
+				8CE2EADFD2FFB7BCBFD090E8 /* Pods-InvaytNotificationServiceExtension.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C4723B601EBBD11700F6D44E /* InvaytNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				C4723B611EBBD11700F6D44E /* NotificationService.swift */,
+				C4723B631EBBD11700F6D44E /* Info.plist */,
+			);
+			path = InvaytNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		C49A1E0A1DD5393600264FC9 /* Custom Controls */ = {
@@ -205,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				C4BF4DB01DD3B5690087220B /* Invayt */,
+				C4723B601EBBD11700F6D44E /* InvaytNotificationServiceExtension */,
 				C4BF4DAF1DD3B5690087220B /* Products */,
 				AB904848B941E475AD148559 /* Pods */,
 				8584BFC5BFC6D7D337041695 /* Frameworks */,
@@ -215,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				C4BF4DAE1DD3B5690087220B /* Invayt.app */,
+				C4723B5F1EBBD11700F6D44E /* InvaytNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,6 +295,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C4723B5E1EBBD11700F6D44E /* InvaytNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4723B671EBBD11700F6D44E /* Build configuration list for PBXNativeTarget "InvaytNotificationServiceExtension" */;
+			buildPhases = (
+				5EC244B6DC763F853460AC44 /* [CP] Check Pods Manifest.lock */,
+				C4723B5B1EBBD11700F6D44E /* Sources */,
+				C4723B5C1EBBD11700F6D44E /* Frameworks */,
+				C4723B5D1EBBD11700F6D44E /* Resources */,
+				AF069BB5335648EB8A3B05F9 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InvaytNotificationServiceExtension;
+			productName = InvaytNotificationServiceExtension;
+			productReference = C4723B5F1EBBD11700F6D44E /* InvaytNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		C4BF4DAD1DD3B5690087220B /* Invayt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4BF4DC01DD3B5690087220B /* Build configuration list for PBXNativeTarget "Invayt" */;
@@ -250,10 +324,14 @@
 				C4BF4DAC1DD3B5690087220B /* Resources */,
 				D39416BCDA2EEA218A0EEB06 /* [CP] Embed Pods Frameworks */,
 				F73D1E7791B2075D45ADC204 /* [CP] Copy Pods Resources */,
+				C4723B3C1EBBD05700F6D44E /* Embed App Extensions */,
+				C4723B6C1EBBED9700F6D44E /* ShellScript */,
+				C40016FE1EC3553C00C174D4 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C4723B651EBBD11700F6D44E /* PBXTargetDependency */,
 			);
 			name = Invayt;
 			productName = Invayt;
@@ -266,17 +344,31 @@
 		C4BF4DA61DD3B5690087220B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Vincent Villalta";
 				TargetAttributes = {
+					C4723B5E1EBBD11700F6D44E = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = FSAFW8M25K;
+						ProvisioningStyle = Automatic;
+					};
 					C4BF4DAD1DD3B5690087220B = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = FSAFW8M25K;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
 						};
@@ -297,11 +389,19 @@
 			projectRoot = "";
 			targets = (
 				C4BF4DAD1DD3B5690087220B /* Invayt */,
+				C4723B5E1EBBD11700F6D44E /* InvaytNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C4723B5D1EBBD11700F6D44E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4BF4DAC1DD3B5690087220B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -329,6 +429,62 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5EC244B6DC763F853460AC44 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AF069BB5335648EB8A3B05F9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InvaytNotificationServiceExtension/Pods-InvaytNotificationServiceExtension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C40016FE1EC3553C00C174D4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SCRIPT_SRC=$(find \"$PROJECT_DIR\" -name 'BugseeAgent' | head -1)\nif [ ! \"${SCRIPT_SRC}\" ]; then\necho \"Error: BugseeAgent script not found.\"\necho \"If you link Bugsee.framework from outside the project folder, please copy the script\"\necho \"into your main project directory or manually update SCRIPT_SRC variable with the right path\"\nexit 1\nfi\n/usr/bin/python \"${SCRIPT_SRC}\" 0f8e1516-4091-4985-bceb-505f732222b2";
+		};
+		C4723B6C1EBBED9700F6D44E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 9a05eb47af5162336116e15d931426dd1db6c1c4 429655436e5027208f5376a1739310b1156a5d7d61dfede29e2bb4f059f8c8b3";
+		};
 		D39416BCDA2EEA218A0EEB06 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,6 +533,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C4723B5B1EBBD11700F6D44E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4723B621EBBD11700F6D44E /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4BF4DAA1DD3B5690087220B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -415,6 +579,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C4723B651EBBD11700F6D44E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4723B5E1EBBD11700F6D44E /* InvaytNotificationServiceExtension */;
+			targetProxy = C4723B641EBBD11700F6D44E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		C4BF4DB51DD3B5690087220B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -435,6 +607,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C4723B681EBBD11700F6D44E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA854B7720B3268C2163CC68 /* Pods-InvaytNotificationServiceExtension.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CURRENT_PROJECT_VERSION = 25;
+				DEVELOPMENT_TEAM = FSAFW8M25K;
+				INFOPLIST_FILE = InvaytNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Invayt.ios.InvaytNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		C4723B691EBBD11700F6D44E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CE2EADFD2FFB7BCBFD090E8 /* Pods-InvaytNotificationServiceExtension.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CURRENT_PROJECT_VERSION = 25;
+				DEVELOPMENT_TEAM = FSAFW8M25K;
+				INFOPLIST_FILE = InvaytNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Invayt.ios.InvaytNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
 		C4BF4DBE1DD3B5690087220B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -532,16 +742,24 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AAD8F11F891358E2EC16E81 /* Pods-Invayt.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Invayt/Invayt.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = FSAFW8M25K;
 				INFOPLIST_FILE = Invayt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Invayt.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -549,21 +767,38 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 894B315E602DE4954C380420 /* Pods-Invayt.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Invayt/Invayt.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = FSAFW8M25K;
 				INFOPLIST_FILE = Invayt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Invayt.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C4723B671EBBD11700F6D44E /* Build configuration list for PBXNativeTarget "InvaytNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4723B681EBBD11700F6D44E /* Debug */,
+				C4723B691EBBD11700F6D44E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C4BF4DA91DD3B5690087220B /* Build configuration list for PBXProject "Invayt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

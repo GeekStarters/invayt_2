@@ -7,7 +7,31 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Branch (0.14.12):
+    - Branch/Core (= 0.14.12)
+    - Branch/without-IDFA (= 0.14.12)
+  - Branch/Core (0.14.12)
+  - Branch/without-IDFA (0.14.12)
+  - BubblePictures (0.1.20):
+    - SDWebImage (~> 3.8)
+  - Bugsee (1.13.0)
+  - Bugsnag (5.8.0):
+    - KSCrash/RecordingAdvanced (= 1.8.13)
   - CVCalendar (1.4.1)
+  - Fabric (1.6.11)
+  - FacebookCore (0.2.0):
+    - Bolts (~> 1.8)
+    - FBSDKCoreKit (~> 4.15)
+  - FacebookLogin (0.2.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.2)
+    - FBSDKCoreKit (~> 4.15)
+    - FBSDKLoginKit (~> 4.15)
+  - FacebookShare (0.2.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.2)
+    - FBSDKCoreKit (~> 4.15)
+    - FBSDKShareKit (~> 4.15)
   - FBSDKCoreKit (4.17.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.17.0):
@@ -20,6 +44,9 @@ PODS:
   - Firebase/Core (3.9.0):
     - FirebaseAnalytics (= 3.5.1)
     - FirebaseCore (= 3.4.4)
+  - Firebase/Crash (3.9.0):
+    - Firebase/Core
+    - FirebaseCrash (= 1.1.3)
   - Firebase/Database (3.9.0):
     - Firebase/Core
     - FirebaseDatabase (= 3.1.0)
@@ -42,6 +69,13 @@ PODS:
   - FirebaseCore (3.4.4):
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCrash (1.1.3):
+    - FirebaseAnalytics (~> 3.4)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseDatabase (3.1.0):
     - FirebaseAnalytics (~> 3.4)
   - FirebaseDynamicLinks (1.3.1):
@@ -50,6 +84,7 @@ PODS:
   - FirebaseStorage (1.0.4):
     - FirebaseAnalytics (~> 3.4)
     - GTMSessionFetcher/Core (~> 1.1)
+  - Font-Awesome-Swift (1.6.1)
   - Fusuma (1.0.0)
   - GMStepper (2.0.0)
   - GoogleInterchangeUtilities (1.2.2):
@@ -58,6 +93,8 @@ PODS:
   - GoogleToolboxForMac/DebugUtils (2.1.0):
     - GoogleToolboxForMac/Defines (= 2.1.0)
   - GoogleToolboxForMac/Defines (2.1.0)
+  - GoogleToolboxForMac/Logger (2.1.0):
+    - GoogleToolboxForMac/Defines (= 2.1.0)
   - GoogleToolboxForMac/NSData+zlib (2.1.0):
     - GoogleToolboxForMac/Defines (= 2.1.0)
   - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.0):
@@ -69,7 +106,11 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - KSCrash/Recording (1.8.13)
+  - KSCrash/RecordingAdvanced (1.8.13):
+    - KSCrash/Recording
   - LUNSegmentedControl (1.0.7)
+  - OneSignal (2.5.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -80,23 +121,38 @@ PODS:
   - SwiftRandom (1.0.0)
   - SWMessages (0.3.0)
   - SWSegmentedControl (2.0.0)
+  - TwitterCore (2.8.0):
+    - Fabric
+  - TwitterKit (2.8.1):
+    - TwitterCore (>= 2.8)
 
 DEPENDENCIES:
   - ADMozaicCollectionViewLayout (~> 2.0)
   - Alamofire (~> 4.0)
+  - Branch
+  - BubblePictures
+  - Bugsee
+  - Bugsnag
   - CVCalendar (~> 1.4.1)
+  - Fabric
+  - FacebookCore
+  - FacebookLogin
+  - FacebookShare
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
   - Firebase/Auth
   - Firebase/Core
+  - Firebase/Crash
   - Firebase/Database
   - Firebase/DynamicLinks
   - Firebase/Storage
+  - Font-Awesome-Swift (~> 1.6.1)
   - Fusuma
   - GMStepper
   - JSQMessagesViewController
   - LUNSegmentedControl
+  - OneSignal (< 3.0, >= 2.5.2)
   - SDWebImage (~> 3.8)
   - SJSegmentedScrollView
   - SVProgressHUD
@@ -105,12 +161,21 @@ DEPENDENCIES:
   - SwiftRandom
   - SWMessages (~> 0.3.0)
   - SWSegmentedControl
+  - TwitterKit
 
 SPEC CHECKSUMS:
   ADMozaicCollectionViewLayout: b81be75b99b091fbbff46a013b061f4914fcb175
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Branch: f63d9cf82ac09747349a73184a0b739d28781c4d
+  BubblePictures: 753fac3e25e548a070442efa64f923fa58e280b6
+  Bugsee: 998f365e3d0334e473d9c2f87375ec4bddf507b4
+  Bugsnag: f5c1c6fbac5d0261020cc052bab609f4e9c9ef1a
   CVCalendar: 61912eb5dc39c3bcfe22a731147a559a696fbc15
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
+  FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
+  FacebookShare: 8e9ee8ea06505e6a1d3d719b0cc63e840fb8aaeb
   FBSDKCoreKit: 30a21d2d7b92984b3d80497113433c00824c35e9
   FBSDKLoginKit: 42b7129ac0373ca99eaf4cbebf4d07bd42371f59
   FBSDKShareKit: 9b573d03fbee36cbaf42d5bb1f2bc019e0d72347
@@ -118,10 +183,12 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: 6e58fc9b397664369ac7617fb0ba93fab6ba7b5b
   FirebaseAuth: 96e9674ff31d6e1f826d53e26aa003a57cab0295
   FirebaseCore: d0ed25f27b6f9158eccc439f1be6f92e81207e28
+  FirebaseCrash: bafd94cd9c9373b6eb8c631705680e891f54bdb3
   FirebaseDatabase: 3ebb2edb6007c3f0f87b248f3fa212bde56a1468
   FirebaseDynamicLinks: 33f0d2092de7b30e0670c02d5747a54e70cf7700
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   FirebaseStorage: c50aa353bf484072704e73b4aff1bd47adb735c4
+  Font-Awesome-Swift: 70ab020f6749d7048bb49807c3e78b702d78afca
   Fusuma: c95c1c999c765f5dc907670be569157372ff33c4
   GMStepper: 6aff0c881afac2f432e5c9b0df71e44e14110a06
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
@@ -130,7 +197,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  KSCrash: 4c3a83f133b60f4bd57e05235ebf8d46e36d378d
   LUNSegmentedControl: f868b1ea740f9917f05dbcb4cded85c33ec606e6
+  OneSignal: 66d08b6b1e3c3858cbf28207ed20f1fa865ab2a2
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SJSegmentedScrollView: b3fa3a5e4c123d223e83b0604cc96d9dfcba01bd
   SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
@@ -139,7 +208,9 @@ SPEC CHECKSUMS:
   SwiftRandom: 437275c63500ddf5a565cbd56996fb23f12cfc3d
   SWMessages: 39dc4ffdde42004b2ee5af14077fc73668498350
   SWSegmentedControl: fe239122a265df08d671560e5a93f65375992b5e
+  TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
+  TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 9f86b5e312b560885d0d269307b6caa279d76122
+PODFILE CHECKSUM: 5c5e3d774e3f67a7504e05bd0f59c0326665f9f4
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0

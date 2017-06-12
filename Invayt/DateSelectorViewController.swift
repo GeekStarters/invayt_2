@@ -21,6 +21,8 @@ class DateSelectorViewController: UIViewController, CVCalendarViewDelegate, CVCa
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var selectedDateTIme: UILabel!
     @IBOutlet weak var navBar: UIView!
+    @IBOutlet weak var startDate: UIButton!
+    @IBOutlet weak var endDate: UIButton!
     struct Color {
         static let selectedText = UIColor.white
         static let text = UIColor.black
@@ -40,6 +42,8 @@ class DateSelectorViewController: UIViewController, CVCalendarViewDelegate, CVCa
     var hour = 0
     var minute = 0
     var selectedDate : Date!
+    var selectedEndDate: Date!
+    var settingEndDate = false
     weak var delegate: SetDateForEventDelegate?
     
     override func viewDidLoad() {
@@ -48,6 +52,8 @@ class DateSelectorViewController: UIViewController, CVCalendarViewDelegate, CVCa
         if let currentCalendar = currentCalendar {
             monthLabel.text = CVDate(date: Date(), calendar: currentCalendar).globalDescription
         }
+        self.startDate.setTitleColor(.blue, for: .normal)
+        self.createInitialDate()
     }
 
     override func viewDidLayoutSubviews() {
@@ -161,20 +167,52 @@ class DateSelectorViewController: UIViewController, CVCalendarViewDelegate, CVCa
         self.minute = components.minute!
         self.createDateTime()
     }
+    
+    func createInitialDate() {
+        let unitFlags = Set<Calendar.Component>([.hour, .minute, .day, .month, .year])
+        let calendar = Calendar.current
+        let components = calendar.dateComponents(unitFlags, from: Date())
+        self.hour = components.hour!
+        self.minute = components.minute!
+        self.day = components.day!
+        self.month = components.month!
+        self.year = components.year!
+        //self.createDateTime()
+    }
    
     func createDateTime(){
-        let dateString = "\(self.day)-\(self.month)-\(self.year) \(self.hour):\(self.minute)"
+        let dateString = "\(self.day)-\(self.month)-\(self.year) \(self.hour):\(String(format: "%02d", self.minute))"
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         let d = dateFormatter.date(from: dateString)
-        self.selectedDate = d
-        self.selectedDateTIme.text = dateString
+        
+        if self.settingEndDate {
+            self.selectedEndDate = d
+            self.endDate.setTitle(dateString,for: .normal)
+        } else {
+            self.selectedDate = d
+            self.startDate.setTitle(dateString,for: .normal)
+        }
+        
         print(dateString)
         print(d)
         
 
     }
+    
+    @IBAction func endDate(_ sender: Any) {
+        settingEndDate = true
+        self.startDate.setTitleColor(.blue, for: .normal)
+        self.endDate.setTitleColor(.lightGray, for: .normal)
+    }
+    
+    @IBAction func startDate(_ sender: Any) {
+        settingEndDate = false
+        self.endDate.setTitleColor(.blue, for: .normal)
+        self.startDate.setTitleColor(.lightGray, for: .normal)
+    }
+    
     
     @IBAction func done(_ sender: Any) {
         delegate?.setDateForEvent(selectedDate: self.selectedDate)

@@ -190,7 +190,7 @@ class UsersViewController: UIViewController, UITableViewDataSource {
             ref.updateChildValues(childUpdates)
         }
         
-        pushNotificationToUser(userTo: userToFollow, content: "<b>\(FIRAuth.auth()!.currentUser!.displayName)</b> is now following you")
+        pushNotificationToUser(userTo: userToFollow, content: "<b>\(FIRAuth.auth()!.currentUser!.displayName!)</b> is now following you")
         
         
     }

@@ -52,9 +52,17 @@ class DiscoverViewController: BaseViewController, UITableViewDataSource, UITable
         let df = DateFormatter()
         df.dateStyle = .short
         df.timeStyle = .short
-        cell.eventTime.text = df.string(from: NSDate(timeIntervalSince1970: (row["timestamp"] as! Double)) as Date)
+        if row["timestamp"] != nil {
+            cell.eventTime.text = df.string(from: NSDate(timeIntervalSince1970: (row["timestamp"] as! Double)) as Date)
+        } else {
+            cell.eventTime.text = ""
+        }
         cell.eventLocation.text = row["locationLocalizable"] as? String
-        cell.evetnImage.sd_setImage(with: URL(string: row["image"] as! String))
+        if row["image"] != nil{
+            cell.evetnImage.sd_setImage(with: URL(string: row["image"] as! String))
+        } else {
+            cell.evetnImage.image = UIImage(named: "invayts_on")
+        }
         cell.eventOrganizer.text = "By \(row["authorName"]!)"
         return cell
     }
@@ -73,7 +81,13 @@ class DiscoverViewController: BaseViewController, UITableViewDataSource, UITable
             SVProgressHUD.dismiss()
             var newItems = [FIRDataSnapshot]()
             for item in snapshot.children {
-                newItems.append(item as! FIRDataSnapshot)
+                let event = (item as! FIRDataSnapshot).value as! [String : AnyObject]
+                if let att = event["attendees"] as? [String] {
+                    if !att.contains((FIRAuth.auth()?.currentUser!.uid)!) && (event["timestamp"] as! Double > Date().timeIntervalSince1970){
+                        newItems.append(item as! FIRDataSnapshot)
+                    }
+                    
+                }
             }
             self.items = newItems
             self.tableView.reloadData()

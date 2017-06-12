@@ -17,7 +17,10 @@ class Invayt: UIView {
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var eventcontent: UILabel!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var invayterImage: UIImageView!
     
+    @IBOutlet weak var invayterName: UILabel!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

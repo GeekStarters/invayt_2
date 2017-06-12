@@ -55,7 +55,7 @@ class AddEventViewController: UIViewController, FusumaDelegate, MKMapViewDelegat
 
         let button = UIButton.init(type: .custom)
         button.setImage(UIImage.init(named: "nextArrow"), for: UIControlState.normal)
-        button.addTarget(self, action:#selector(getter: self.next), for: UIControlEvents.touchUpInside)
+        button.addTarget(self, action:#selector(AddEventViewController.next(_:)), for: UIControlEvents.touchUpInside)
         button.frame = CGRect.init(x: 0, y: 0, width: 10, height: 20) //CGRectMake(0, 0, 30, 30)
         let barButton = UIBarButtonItem.init(customView: button)
         
@@ -142,11 +142,14 @@ class AddEventViewController: UIViewController, FusumaDelegate, MKMapViewDelegat
     }
     
     @IBAction func next(_ sender: Any) {
+        print("NEXT")
         if (self.eventName.text?.characters.count)! > 0
             && (self.eventDate.text?.characters.count)! > 0
-            && (self.eventDescription.text.characters.count) > 0
         {
             if self.alreadySent == false {
+                if self.image == nil {
+                    self.image = UIImage.imageWithColor(color: .white)
+                }
             SVProgressHUD.show(withStatus: "Uploading image")
             var data = Data()
             data = UIImageJPEGRepresentation(self.image, 0.8)!
@@ -181,7 +184,7 @@ class AddEventViewController: UIViewController, FusumaDelegate, MKMapViewDelegat
                              "image": metadata.downloadURL()?.absoluteString,
                              "timestamp": self.date.timeIntervalSince1970,
                              "hashtags": self.cohost.text,
-                             "attendees" : []
+                             "attendees" : [FIRAuth.auth()?.currentUser!.uid]
                     ]
                     as [String : Any]
                 self.ref.child("events").childByAutoId().setValue(event, withCompletionBlock: { (error, reference) in
@@ -262,4 +265,20 @@ class AddEventViewController: UIViewController, FusumaDelegate, MKMapViewDelegat
         }
     }
     
+}
+
+extension UIImage {
+    class func imageWithColor(color: UIColor) -> UIImage {
+        let rect = CGRect(origin: CGPoint(x: 0, y:0), size: CGSize(width: 1, height: 1))
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()!
+        
+        context.setFillColor(color.cgColor)
+        context.fill(rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image!
+    }
 }

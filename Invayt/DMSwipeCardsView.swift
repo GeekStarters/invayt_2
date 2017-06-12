@@ -29,7 +29,7 @@ public class DMSwipeCardsView<Element: FIRDataSnapshot>: UIView {
 
 	fileprivate let viewGenerator: ViewGenerator
 	fileprivate let overlayGenerator: OverlayGenerator?
-	fileprivate var allCards = [Element]()
+	public var allCards = [Element]()
 	fileprivate var loadedCards = [DMSwipeCard]()
 
 	public typealias ViewGenerator = (_ element: Element, _ frame: CGRect) -> (UIView)
