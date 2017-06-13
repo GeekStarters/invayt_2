@@ -22,9 +22,9 @@ enum ADMozaikLayoutType {
 
 class GaleryViewController: UIViewController, UICollectionViewDataSource, ADMozaikLayoutDelegate {
 
-    var database: FIRDatabase!
-    var storage: FIRStorage!
-    var fbEvent: FIRDataSnapshot!
+    var database: Database!
+    var storage: Storage!
+    var fbEvent: DataSnapshot!
 
     
     var picArray = [UIImage]()
@@ -53,8 +53,8 @@ class GaleryViewController: UIViewController, UICollectionViewDataSource, ADMoza
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        database = FIRDatabase.database()
-        storage = FIRStorage.storage()
+        database = Database.database()
+        storage = Storage.storage()
         getAllPictures()
         // Do any additional setup after loading the view.
     }
@@ -124,13 +124,13 @@ class GaleryViewController: UIViewController, UICollectionViewDataSource, ADMoza
             if let photoURL = messageData["photoURL"] as String! {
                 if photoURL.hasPrefix("gs://") {
                     print(photoURL)
-                    let storageRef = FIRStorage.storage().reference(forURL: photoURL)
-                    storageRef.data(withMaxSize: INT64_MAX){ (data, error) in
+                    let storageRef = Storage.storage().reference(forURL: photoURL)
+                    storageRef.getData(maxSize: INT64_MAX){ (data, error) in
                         if let error = error {
                             print("Error downloading image data: \(error)")
                             return
                         }
-                        storageRef.metadata(completion: { (metadata, metadataErr) in
+                        storageRef.getMetadata(completion: { (metadata, metadataErr) in
                             if let error = metadataErr {
                                 print("Error downloading metadata: \(error)")
                                 return

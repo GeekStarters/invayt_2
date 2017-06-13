@@ -20,10 +20,10 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var email: LinedTextField!
     @IBOutlet weak var password: LinedTextField!
     @IBOutlet weak var buttonBottom: NSLayoutConstraint!
-    var ref: FIRDatabaseReference!
+    var ref: DatabaseReference!
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
@@ -72,12 +72,12 @@ class SignUpViewController: UIViewController {
     @IBAction func twitterSignUp(_ sender: Any) {
         Twitter.sharedInstance().logIn { (session, error) in
             if (session != nil) {
-                let credential = FIRTwitterAuthProvider.credential(withToken: session!.authToken, secret: session!.authTokenSecret)
-                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+                let credential = TwitterAuthProvider.credential(withToken: session!.authToken, secret: session!.authTokenSecret)
+                Auth.auth().signIn(with: credential) { (user, error) in
                     if (error != nil) {
                         SWMessage.sharedInstance.showNotificationWithTitle("Error", subtitle: error?.localizedDescription, type: .error)
                     }else{
-                        self.saveUserToDb(key: FIRAuth.auth()!.currentUser!.uid, name: FIRAuth.auth()!.currentUser!.displayName!, email:FIRAuth.auth()!.currentUser!.email!, image: FIRAuth.auth()!.currentUser!.photoURL!.absoluteString)
+                        self.saveUserToDb(key: Auth.auth().currentUser!.uid, name: Auth.auth().currentUser!.displayName!, email:Auth.auth().currentUser!.email!, image: Auth.auth().currentUser!.photoURL!.absoluteString)
                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
@@ -92,12 +92,12 @@ class SignUpViewController: UIViewController {
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions:  ["email", "public_profile", "user_friends"], from: self, handler: { (result, error) -> Void in
             if (error == nil){
-                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                Auth.auth().signIn(with: credential) { (user, error) in
                     if (error != nil) {
                         SWMessage.sharedInstance.showNotificationWithTitle("Error", subtitle: error?.localizedDescription, type: .error)
                     }else{
-                        self.saveUserToDb(key: FIRAuth.auth()!.currentUser!.uid, name: FIRAuth.auth()!.currentUser!.displayName!, email:FIRAuth.auth()!.currentUser!.email!, image: FIRAuth.auth()!.currentUser!.photoURL!.absoluteString)
+                        self.saveUserToDb(key: Auth.auth().currentUser!.uid, name: Auth.auth().currentUser!.displayName!, email:Auth.auth().currentUser!.email!, image: Auth.auth().currentUser!.photoURL!.absoluteString)
                         let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
@@ -110,16 +110,16 @@ class SignUpViewController: UIViewController {
         if isValidEmail(testStr: self.email.text!) {
             if (self.userName.text?.characters.count)! > 0 {
                 if (self.password.text?.characters.count)! > 7 {
-                    FIRAuth.auth()?.createUser(withEmail: self.email.text!, password: self.password.text!) { (user, error) in
+                    Auth.auth().createUser(withEmail: self.email.text!, password: self.password.text!) { (user, error) in
                         if (error != nil) {
                             SWMessage.sharedInstance.showNotificationWithTitle("Error", subtitle: error?.localizedDescription, type: .error)
                         }else{
-                            let changeRequest = FIRAuth.auth()?.currentUser?.profileChangeRequest()
+                            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                             changeRequest?.displayName = self.userName.text
                             changeRequest?.commitChanges() { (error) in
                                 print("Completed")
                             }
-                            self.saveUserToDb(key: FIRAuth.auth()!.currentUser!.uid, name: self.userName.text!, email: self.email.text!, image: "")
+                            self.saveUserToDb(key: Auth.auth().currentUser!.uid, name: self.userName.text!, email: self.email.text!, image: "")
                             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
                             self.navigationController?.pushViewController(vc, animated: true)
                         }

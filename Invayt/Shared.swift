@@ -11,9 +11,9 @@ import Firebase
 import FirebaseDatabase
 import SDWebImage
 import OneSignal
-public func pushNotificationToUser(userTo: FIRDataSnapshot, content: String){
-    var ref: FIRDatabaseReference!
-    ref = FIRDatabase.database().reference()
+public func pushNotificationToUser(userTo: DataSnapshot, content: String){
+    var ref: DatabaseReference!
+    ref = Database.database().reference()
     let userDictionary = userTo.value as! [String : AnyObject]
     let notification = [
         "content": content,

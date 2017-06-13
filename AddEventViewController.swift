@@ -16,6 +16,11 @@ import GMStepper
 import SVProgressHUD
 
 class AddEventViewController: UIViewController, FusumaDelegate, MKMapViewDelegate, SetDateForEventDelegate, UITextFieldDelegate {
+    func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
+        
+    }
+
+    
 
 
     @IBOutlet weak var scrollView: UIScrollView!
@@ -37,17 +42,17 @@ class AddEventViewController: UIViewController, FusumaDelegate, MKMapViewDelegat
     var alreadySent = false
     var image: UIImage!
     let dbRef = "https://invayt-3d279.firebaseio.com/"
-    var ref: FIRDatabaseReference!
+    var ref: DatabaseReference!
     let storageRef = "gs://invayt-3d279.appspot.com"
-    let storage = FIRStorage.storage()
-    var createdEvent : FIRDatabaseReference!
+    let storage = Storage.storage()
+    var createdEvent : DatabaseReference!
     var date: Date!
     
     var eventDateFormatted : Date!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.eventLocation.addTarget(self, action: #selector(self.eventLocationSeted), for: UIControlEvents.editingDidEnd)
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -153,15 +158,15 @@ class AddEventViewController: UIViewController, FusumaDelegate, MKMapViewDelegat
             SVProgressHUD.show(withStatus: "Uploading image")
             var data = Data()
             data = UIImageJPEGRepresentation(self.image, 0.8)!
-            let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/eventimage/\(Int(arc4random_uniform(8472074) + 1)).jpg"
+            let filePath = "\(Auth.auth().currentUser!.uid)/eventimage/\(Int(arc4random_uniform(8472074) + 1)).jpg"
             print(filePath)
-            let metaData = FIRStorageMetadata()
+            let metaData = StorageMetadata()
             metaData.contentType = "image/jpg"
             let storageRef = storage.reference()
             let eventImagesRef = storageRef.child(filePath)
             
             
-            let uploadTask = eventImagesRef.put(data, metadata: nil) { (metadata, error) in
+            let uploadTask = eventImagesRef.putData(data, metadata: nil) { (metadata, error) in
                 guard let metadata = metadata else {
                     print("upload error")
                     SVProgressHUD.showError(withStatus: error?.localizedDescription)
@@ -176,15 +181,15 @@ class AddEventViewController: UIViewController, FusumaDelegate, MKMapViewDelegat
                              "locationLocalizable": self.eventLocation.text ?? "",
                              "description": self.eventDescription.text,
 //                             "geolocation": [self.mapView.annotations[0].coordinate.latitude, self.mapView.annotations[0].coordinate.longitude],
-                             "author": FIRAuth.auth()?.currentUser!.uid,
-                             "authorName": FIRAuth.auth()?.currentUser!.displayName,
+                             "author": Auth.auth().currentUser!.uid,
+                             "authorName": Auth.auth().currentUser!.displayName,
                              "price": "Free",
                              "maximun": self.maxAttendees.value,
                              "perUser": self.maximunPerperson.value,
                              "image": metadata.downloadURL()?.absoluteString,
                              "timestamp": self.date.timeIntervalSince1970,
                              "hashtags": self.cohost.text,
-                             "attendees" : [FIRAuth.auth()?.currentUser!.uid]
+                             "attendees" : [Auth.auth().currentUser!.uid as! String] 
                     ]
                     as [String : Any]
                 self.ref.child("events").childByAutoId().setValue(event, withCompletionBlock: { (error, reference) in
@@ -210,8 +215,8 @@ class AddEventViewController: UIViewController, FusumaDelegate, MKMapViewDelegat
                     "locationLocalizable": self.eventLocation.text!,
                     "description": self.eventDescription.text,
                     "geolocation": [self.mapView.annotations[0].coordinate.latitude, self.mapView.annotations[0].coordinate.longitude],
-                    "author": FIRAuth.auth()?.currentUser!.uid,
-                    "authorName": FIRAuth.auth()?.currentUser!.displayName,
+                    "author": Auth.auth().currentUser!.uid,
+                    "authorName": Auth.auth().currentUser!.displayName,
                     "price": "Free",
                     "maximun": self.maxAttendees.value,
                     "perUser": self.maximunPerperson.value,

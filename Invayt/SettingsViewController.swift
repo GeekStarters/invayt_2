@@ -47,7 +47,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         else
         {
-            try! FIRAuth.auth()!.signOut()
+            try! Auth.auth().signOut()
             SVProgressHUD.dismiss()
             if let storyboard = self.storyboard {
                 let vc = storyboard.instantiateViewController(withIdentifier: "start") as! UINavigationController

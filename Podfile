@@ -12,9 +12,6 @@ target 'Invayt' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
-  pod 'FacebookCore'
-  pod 'FacebookLogin'
-  pod 'FacebookShare'
   pod 'JSQMessagesViewController'
   pod "GMStepper"
   pod 'Fusuma'
@@ -35,7 +32,7 @@ target 'Invayt' do
   pod 'Firebase/Crash'
   pod 'Bugsee'
   pod 'Bugsnag'
-
+  pod 'StringExtensionHTML'
 end
 
 target 'InvaytNotificationServiceExtension' do

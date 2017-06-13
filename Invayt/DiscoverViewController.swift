@@ -20,12 +20,12 @@ class DiscoverViewController: BaseViewController, UITableViewDataSource, UITable
     @IBOutlet weak var tableView: UITableView!
     
     
-    var ref: FIRDatabaseReference!
-    var items = [FIRDataSnapshot]()
+    var ref: DatabaseReference!
+    var items = [DataSnapshot]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref = FIRDatabase.database().reference()
+        self.ref = Database.database().reference()
         let sc = SWSegmentedControl(items: ["Local Events", "All Events"])
         sc.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.segmentedContainer.frame.size.height)
         sc.tintColor = UIColor.white
@@ -79,12 +79,12 @@ class DiscoverViewController: BaseViewController, UITableViewDataSource, UITable
         SVProgressHUD.show()
         self.ref.child("events").queryOrdered(byChild: "timestamp").observe(.value, with: {(snapshot) -> Void in
             SVProgressHUD.dismiss()
-            var newItems = [FIRDataSnapshot]()
+            var newItems = [DataSnapshot]()
             for item in snapshot.children {
-                let event = (item as! FIRDataSnapshot).value as! [String : AnyObject]
+                let event = (item as! DataSnapshot).value as! [String : AnyObject]
                 if let att = event["attendees"] as? [String] {
-                    if !att.contains((FIRAuth.auth()?.currentUser!.uid)!) && (event["timestamp"] as! Double > Date().timeIntervalSince1970){
-                        newItems.append(item as! FIRDataSnapshot)
+                    if !att.contains((Auth.auth().currentUser!.uid)) && (event["timestamp"] as! Double > Date().timeIntervalSince1970){
+                        newItems.append(item as! DataSnapshot)
                     }
                     
                 }
@@ -95,17 +95,17 @@ class DiscoverViewController: BaseViewController, UITableViewDataSource, UITable
     }
     
     
-    func getUsers(eventToConsult: FIRDataSnapshot, label: UILabel){
+    func getUsers(eventToConsult: DataSnapshot, label: UILabel){
         var event: [String : AnyObject]!
         event = eventToConsult.value as! [String : AnyObject]
         self.ref.child("Users").observe(.value, with: {(snapshot) -> Void in
             for item in snapshot.children {
-                let user = item as! FIRDataSnapshot
-                if user.key == FIRAuth.auth()?.currentUser!.uid {
+                let user = item as! DataSnapshot
+                if user.key == Auth.auth().currentUser!.uid {
                     let currentUser = user.value as! [String : AnyObject]
                     if let att = event["attendees"] as? [String] {
                         var followingAttending = 0
-                        var attendeeName = ""
+                        _ = ""
                         if let followingArray = currentUser["following"] as? [String] {
                             for following in followingArray {
                                 if att.contains(following) {

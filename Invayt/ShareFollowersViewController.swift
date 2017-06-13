@@ -13,19 +13,19 @@ import SVProgressHUD
 class ShareFollowersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var checkOff = UIImage(named: "check_off")
     var checkOn = UIImage(named: "check_on")
-    var users = [FIRDataSnapshot]()
-    var selectedUsers = [FIRDataSnapshot]()
-    var ref: FIRDatabaseReference!
+    var users = [DataSnapshot]()
+    var selectedUsers = [DataSnapshot]()
+    var ref: DatabaseReference!
     var currentUserData : [String : AnyObject]!
     var currentUserKey : String!
-    var createdEvent : FIRDatabaseReference!
+    var createdEvent : DatabaseReference!
     var eventName: String!
     
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref = FIRDatabase.database().reference()
+        self.ref = Database.database().reference()
         self.getUsers()
         // Do any additional setup after loading the view.
     }
@@ -69,17 +69,17 @@ class ShareFollowersViewController: UIViewController, UITableViewDataSource, UIT
         self.ref.child("Users").observe(.value, with: {(snapshot) -> Void in
             SVProgressHUD.dismiss()
             print(snapshot)
-            var newItems = [FIRDataSnapshot]()
+            var newItems = [DataSnapshot]()
             for item in snapshot.children {
-                let user = item as! FIRDataSnapshot
-                if user.key == FIRAuth.auth()?.currentUser!.uid {
-                    self.currentUserData = (item as! FIRDataSnapshot).value as! [String : AnyObject]
-                    self.currentUserKey = (item as! FIRDataSnapshot).key
+                let user = item as! DataSnapshot
+                if user.key == Auth.auth().currentUser!.uid {
+                    self.currentUserData = (item as! DataSnapshot).value as! [String : AnyObject]
+                    self.currentUserKey = (item as! DataSnapshot).key
                 } else {
                     var followers = 0
                     let individual = user.value as! [String : AnyObject]
                     if let followingArray = individual["following"] as? [String] {
-                        if followingArray.contains(FIRAuth.auth()!.currentUser!.uid) {
+                        if followingArray.contains(Auth.auth().currentUser!.uid) {
                             followers = followers + 1
                             newItems.append(user)
                         }
@@ -95,11 +95,11 @@ class ShareFollowersViewController: UIViewController, UITableViewDataSource, UIT
     @IBAction func shareInvayt(_ sender: Any) {
         SVProgressHUD.show()
         for item in self.selectedUsers {
-            pushNotificationToUser(userTo: item, content: "<b>\(FIRAuth.auth()!.currentUser!.displayName!)</b> has invited you to attend the event <b>\(self.eventName)</b>")
+            pushNotificationToUser(userTo: item, content: "<b>\(Auth.auth().currentUser!.displayName!)</b> has invited you to attend the event <b>\(self.eventName)</b>")
             let invayt = [
                 "key": self.createdEvent.key,
                 "timestamp": "\(Date().timeIntervalSince1970)",
-                "userFrom": "\(FIRAuth.auth()!.currentUser!.uid)",
+                "userFrom": "\(Auth.auth().currentUser!.uid)",
                 "userTo": item.key
             ]
             self.ref.child("invayts").childByAutoId().setValue(invayt, withCompletionBlock: { (error, ref) in

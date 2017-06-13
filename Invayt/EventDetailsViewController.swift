@@ -15,10 +15,10 @@ import Alamofire
 import SVProgressHUD
 class EventDetailsViewController: UIViewController, PKAddPassesViewControllerDelegate {
 
-    var fbEvent: FIRDataSnapshot!
-    var updatedEvent: FIRDataSnapshot!
+    var fbEvent: DataSnapshot!
+    var updatedEvent: DataSnapshot!
     var event: [String : AnyObject]!
-    var ref: FIRDatabaseReference!
+    var ref: DatabaseReference!
     var followingAttending = 0
     @IBOutlet weak var bigImage: UIImageView!
     @IBOutlet weak var day: UILabel!
@@ -31,7 +31,7 @@ class EventDetailsViewController: UIViewController, PKAddPassesViewControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         self.event = fbEvent.value as! [String : AnyObject]
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : Any]
         self.populateData()
@@ -96,36 +96,48 @@ class EventDetailsViewController: UIViewController, PKAddPassesViewControllerDel
     
     
     @IBAction func openMap(_ sender: Any) {
+        let location = self.event["locationLocalizable"] as! String
+        var escapedString = location.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
-            var cc = self.event["geolocation"] as! [Double]
-            if cc.isEmpty {
-                UIApplication.shared.open(URL(string:"comgooglemaps://?center=\(cc[0]),\(cc[1])&zoom=14")!, options: [:], completionHandler: { (completed) in })
+            if self.event["geolocation"] != nil {
+                var cc = self.event["geolocation"] as! [Double]
+                if cc.isEmpty {
+                    UIApplication.shared.open(URL(string:"comgooglemaps://?center=\(cc[0]),\(cc[1])&zoom=14")!, options: [:], completionHandler: { (completed) in })
+                } else {
+                    UIApplication.shared.open(URL(string:"comgooglemaps://?q=\(escapedString!)&zoom=14")!, options: [:], completionHandler: { (completed) in })
+                }
             } else {
-                UIApplication.shared.open(URL(string:"comgooglemaps://?q=\(self.event["locationLocalizable"] as! String)&zoom=14")!, options: [:], completionHandler: { (completed) in })
+                UIApplication.shared.open(URL(string:"comgooglemaps://?q=\(escapedString!)&zoom=14")!, options: [:], completionHandler: { (completed) in })
             }
+            
         } else {
             print("Can't use comgooglemaps://");
-            var cc = self.event["geolocation"] as! [Double]
-            print(self.event)
-            if cc.isEmpty {
-                UIApplication.shared.open(URL(string:"http://maps.apple.com/?ll=\(cc[0]),\(cc[1])")!, options: [:], completionHandler: { (completed) in })
+            if self.event["geolocation"] != nil {
+                var cc = self.event["geolocation"] as! [Double]
+                print(self.event)
+                if cc.isEmpty {
+                    UIApplication.shared.open(URL(string:"http://maps.apple.com/?ll=\(cc[0]),\(cc[1])")!, options: [:], completionHandler: { (completed) in })
+                } else {
+                    UIApplication.shared.open(URL(string:"http://maps.apple.com/?address=\(escapedString!)")!, options: [:], completionHandler: { (completed) in })
+                 }
             } else {
-                UIApplication.shared.open(URL(string:"http://maps.apple.com/?address=\(self.event["locationLocalizable"] as! String)")!, options: [:], completionHandler: { (completed) in })
+                UIApplication.shared.open(URL(string:"http://maps.apple.com/?address=\(escapedString!)")!, options: [:], completionHandler: { (completed) in })
             }
+            
         }
     }
     
     @IBAction func attending(_ sender: Any) {
         let key = self.fbEvent.key
         if let attendees = self.event["attendees"] as? NSMutableArray {
-            attendees.add(FIRAuth.auth()?.currentUser!.uid)
+            attendees.add(Auth.auth().currentUser!.uid)
             let childUpdates = ["/events/\(key)/attendees": attendees]
             ref.updateChildValues(childUpdates)
             SVProgressHUD.showSuccess(withStatus: "Done")
             self.navigationController?.popViewController(animated: true)
         } else {
             let attendees : NSMutableArray = []
-            attendees.add(FIRAuth.auth()?.currentUser!.uid)
+            attendees.add(Auth.auth().currentUser!.uid)
             let childUpdates = ["/events/\(key)/attendees": attendees]
             ref.updateChildValues(childUpdates)
             SVProgressHUD.showSuccess(withStatus: "Done")
@@ -137,10 +149,10 @@ class EventDetailsViewController: UIViewController, PKAddPassesViewControllerDel
     func getUsers() {
         self.ref.child("Users").observe(.value, with: {(snapshot) -> Void in
             print(snapshot)
-            var newItems = [FIRDataSnapshot]()
+            var newItems = [DataSnapshot]()
             for item in snapshot.children {
-                let user = item as! FIRDataSnapshot
-                if user.key == FIRAuth.auth()?.currentUser!.uid {
+                let user = item as! DataSnapshot
+                if user.key == Auth.auth().currentUser!.uid {
                     let currentUser = user.value as! [String : AnyObject]
                     if let att = self.event["attendees"] as? [String] {
                         var followingAttending = 0
@@ -167,7 +179,7 @@ class EventDetailsViewController: UIViewController, PKAddPassesViewControllerDel
     func getEventData(){
         self.ref.child("events/\(self.fbEvent.key)").observe(.value, with: {(snapshot) -> Void in
             for item in snapshot.children {
-                self.updatedEvent = item as! FIRDataSnapshot
+                self.updatedEvent = item as! DataSnapshot
             }
         })
     }

@@ -11,7 +11,7 @@ import Firebase
 import FirebaseDatabase
 class EventInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var image: UIImage!
-    var fbEvent: FIRDataSnapshot!
+    var fbEvent: DataSnapshot!
     var options = ["Event info", "Event conversation", "Media", "Mute", "Participant list", "Share"]
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {

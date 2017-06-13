@@ -22,7 +22,7 @@ public protocol DMSwipeCardsViewDelegate: class {
 	func reachedEndOfStack()
 }
 
-public class DMSwipeCardsView<Element: FIRDataSnapshot>: UIView {
+public class DMSwipeCardsView<Element: DataSnapshot>: UIView {
 
 	public weak var delegate: DMSwipeCardsViewDelegate?
 	public var bufferSize: Int = 2

@@ -17,19 +17,19 @@ import Photos
 class MeViewController: BaseViewController, LUNSegmentedControlDelegate, LUNSegmentedControlDataSource, UITableViewDataSource, UITableViewDelegate {
 
     
-    var ref: FIRDatabaseReference!
-    var items = [FIRDataSnapshot]()
-    var myInvayts = [FIRDataSnapshot]()
-    var eventsByMe = [FIRDataSnapshot]()
+    var ref: DatabaseReference!
+    var items = [DataSnapshot]()
+    var myInvayts = [DataSnapshot]()
+    var eventsByMe = [DataSnapshot]()
     var image: UIImage!
     let dbRef = "https://invayt-3d279.firebaseio.com/"
     let storageRef = "gs://invayt-3d279.appspot.com"
-    let storage = FIRStorage.storage()
+    let storage = Storage.storage()
     var currentUserData : [String : AnyObject]!
     var currentUserKey : String!
     
-    var followersArray = [FIRDataSnapshot]()
-    var followingsArray = [FIRDataSnapshot]()
+    var followersArray = [DataSnapshot]()
+    var followingsArray = [DataSnapshot]()
     
     @IBOutlet weak var segmentedContainer: UIView!
     @IBOutlet weak var name: UILabel!
@@ -40,13 +40,13 @@ class MeViewController: BaseViewController, LUNSegmentedControlDelegate, LUNSegm
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref = FIRDatabase.database().reference()
+        self.ref = Database.database().reference()
         self.getEvents()
         self.getEventsByMe()
-        self.name.text = FIRAuth.auth()?.currentUser!.displayName
+        self.name.text = Auth.auth().currentUser!.displayName
         self.avatar.layer.cornerRadius = self.avatar.frame.size.width / 2
         self.avatar.clipsToBounds = true
-        self.avatar.sd_setImage(with: FIRAuth.auth()!.currentUser!.photoURL)
+        self.avatar.sd_setImage(with: Auth.auth().currentUser!.photoURL)
         self.getUsers()
         self.title = "Me"
     }
@@ -111,12 +111,12 @@ class MeViewController: BaseViewController, LUNSegmentedControlDelegate, LUNSegm
         SVProgressHUD.show()
         self.ref.child("events").queryOrdered(byChild: "timestamp").observe(.value, with: {(snapshot) -> Void in
             SVProgressHUD.dismiss()
-            var newItems = [FIRDataSnapshot]()
+            var newItems = [DataSnapshot]()
             for item in snapshot.children {
-                let event = (item as! FIRDataSnapshot).value as! [String : AnyObject]
+                let event = (item as! DataSnapshot).value as! [String : AnyObject]
                 if let att = event["attendees"] as? [String] {
-                    if att.contains((FIRAuth.auth()?.currentUser!.uid)!) {
-                        newItems.append(item as! FIRDataSnapshot)
+                    if att.contains((Auth.auth().currentUser!.uid)) {
+                        newItems.append(item as! DataSnapshot)
                     }
                     
                 }
@@ -132,12 +132,12 @@ class MeViewController: BaseViewController, LUNSegmentedControlDelegate, LUNSegm
         SVProgressHUD.show()
         self.ref.child("events").queryOrdered(byChild: "timestamp").observe(.value, with: {(snapshot) -> Void in
             SVProgressHUD.dismiss()
-            var newItems = [FIRDataSnapshot]()
+            var newItems = [DataSnapshot]()
             for item in snapshot.children {
-                let event = (item as! FIRDataSnapshot).value as! [String : AnyObject]
+                let event = (item as! DataSnapshot).value as! [String : AnyObject]
                 if let att = event["author"] as? [String] {
-                    if att.contains((FIRAuth.auth()?.currentUser!.uid)!) {
-                        newItems.append(item as! FIRDataSnapshot)
+                    if att.contains((Auth.auth().currentUser!.uid)) {
+                        newItems.append(item as! DataSnapshot)
                     }
                     
                 }
@@ -154,12 +154,12 @@ class MeViewController: BaseViewController, LUNSegmentedControlDelegate, LUNSegm
         self.ref.child("Users").observe(.value, with: {(snapshot) -> Void in
             SVProgressHUD.dismiss()
             print(snapshot)
-            var newItems = [FIRDataSnapshot]()
+            var newItems = [DataSnapshot]()
             for item in snapshot.children {
-                let user = item as! FIRDataSnapshot
-                if user.key == FIRAuth.auth()?.currentUser!.uid {
-                    self.currentUserData = (item as! FIRDataSnapshot).value as! [String : AnyObject]
-                    self.currentUserKey = (item as! FIRDataSnapshot).key
+                let user = item as! DataSnapshot
+                if user.key == Auth.auth().currentUser!.uid {
+                    self.currentUserData = (item as! DataSnapshot).value as! [String : AnyObject]
+                    self.currentUserKey = (item as! DataSnapshot).key
                     if let followingArray = self.currentUserData["following"] as? NSMutableArray {
                         self.following.setTitle("\(followingArray.count) Following", for: .normal)
                     } else {
@@ -169,7 +169,7 @@ class MeViewController: BaseViewController, LUNSegmentedControlDelegate, LUNSegm
                     var followers = 0
                     let individual = user.value as! [String : AnyObject]
                     if let followingArray = individual["following"] as? [String] {
-                        if followingArray.contains(FIRAuth.auth()!.currentUser!.uid) {
+                        if followingArray.contains(Auth.auth().currentUser!.uid) {
                             followers = followers + 1
                             self.followersArray.append(user)
                         }

@@ -19,9 +19,10 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>invayt</string>
 				<string>fb1054652314600611</string>
 			</array>
 		</dict>
@@ -121,5 +122,14 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>branch_app_domain</key>
+	<string>invayt.app.link</string>
+	<key>branch_key</key>
+	<dict>
+		<key>live</key>
+		<string>key_live_fcsxBVFDb5imtwTqn9xNnnfmsCgmQzkx</string>
+		<key>test</key>
+		<string>key_test_pjztELDsm4mivBTDg9JaYgbbDulcJyoT</string>
+	</dict>
 </dict>
 </plist>

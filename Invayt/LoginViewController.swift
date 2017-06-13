@@ -91,8 +91,8 @@ class LoginViewController: UIViewController {
     @IBAction func twitterSignUp(_ sender: Any) {
         Twitter.sharedInstance().logIn { (session, error) in
             if (session != nil) {
-                let credential = FIRTwitterAuthProvider.credential(withToken: session!.authToken, secret: session!.authTokenSecret)
-                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+                let credential = TwitterAuthProvider.credential(withToken: session!.authToken, secret: session!.authTokenSecret)
+                Auth.auth().signIn(with: credential) { (user, error) in
                     if (error != nil) {
                         SWMessage.sharedInstance.showNotificationWithTitle("Error", subtitle: error?.localizedDescription, type: .error)
                     }else{
@@ -111,8 +111,8 @@ class LoginViewController: UIViewController {
         let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions:  ["email", "public_profile", "user_friends"], from: self, handler: { (result, error) -> Void in
             if (error == nil){
-                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                Auth.auth().signIn(with: credential) { (user, error) in
                     if (error != nil) {
                         SWMessage.sharedInstance.showNotificationWithTitle("Error", subtitle: error?.localizedDescription, type: .error)
                     }else{
@@ -127,7 +127,7 @@ class LoginViewController: UIViewController {
     @IBAction func signUp(_ sender: Any) {
         if isValidEmail(testStr: self.email.text!) {
             if (self.password.text?.characters.count)! > 7 {
-                FIRAuth.auth()?.signIn(withEmail: self.email.text!, password: self.password.text!) { (user, error) in
+                Auth.auth().signIn(withEmail: self.email.text!, password: self.password.text!) { (user, error) in
                     if (error != nil) {
                         SWMessage.sharedInstance.showNotificationWithTitle("Error", subtitle: error?.localizedDescription, type: .error)
                     }else{

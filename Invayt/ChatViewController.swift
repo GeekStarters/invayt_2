@@ -23,25 +23,24 @@ class ChatViewController: JSQMessagesViewController {
     var conversation: Conversation?
     var incomingBubble: JSQMessagesBubbleImage!
     var outgoingBubble: JSQMessagesBubbleImage!
-    var fbEvent: FIRDataSnapshot!
+    var fbEvent: DataSnapshot!
     
     fileprivate var displayName: String!
+    private lazy var channelRef: DatabaseReference = Database.database().reference().child("chats/\(self.fbEvent.key)")
+    private var channelRefHandle: DatabaseHandle?
     
-    private lazy var channelRef: FIRDatabaseReference = FIRDatabase.database().reference().child("chats/\(self.fbEvent.key)")
-    private var channelRefHandle: FIRDatabaseHandle?
+    private lazy var messageRef: DatabaseReference = self.channelRef.child("messages") 
+    private var newMessageRefHandle: DatabaseHandle?
     
-    private lazy var messageRef: FIRDatabaseReference = self.channelRef.child("messages")
-    private var newMessageRefHandle: FIRDatabaseHandle?
-    
-    private lazy var userIsTypingRef: FIRDatabaseReference = self.channelRef.child("typingIndicator").child(self.senderId)
-    private lazy var usersTypingQuery: FIRDatabaseQuery = self.channelRef.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
+    private lazy var userIsTypingRef: DatabaseReference = self.channelRef.child("typingIndicator").child(self.senderId)
+    private lazy var usersTypingQuery: DatabaseQuery = self.channelRef.child("typingIndicator").queryOrderedByValue().queryEqual(toValue: true)
 
     private var localTyping = false
     
-    lazy var storageRef: FIRStorageReference = FIRStorage.storage().reference(forURL: "gs://invayt-3d279.appspot.com")
+    lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://invayt-3d279.appspot.com")
     private let imageURLNotSetKey = "NOTSET"
     
-    private var updatedMessageRefHandle: FIRDatabaseHandle?
+    private var updatedMessageRefHandle: DatabaseHandle?
 
     
     var isTyping: Bool {
@@ -56,8 +55,8 @@ class ChatViewController: JSQMessagesViewController {
 
     @IBOutlet weak var segmentedContainer: UIView!
     override func viewDidLoad() {
-        self.senderId = FIRAuth.auth()?.currentUser!.uid
-        self.senderDisplayName = FIRAuth.auth()?.currentUser!.displayName
+        self.senderId = Auth.auth().currentUser!.uid
+        self.senderDisplayName = Auth.auth().currentUser!.displayName
         super.viewDidLoad()
         incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
         outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.lightGray)
@@ -252,7 +251,7 @@ class ChatViewController: JSQMessagesViewController {
         userIsTypingRef = typingIndicatorRef.child(senderId)
         userIsTypingRef.onDisconnectRemoveValue()
         
-        usersTypingQuery.observe(.value) { (data: FIRDataSnapshot) in
+        usersTypingQuery.observe(.value) { (data: DataSnapshot) in
             if data.childrenCount == 1 && self.isTyping {
                 return
             }
@@ -305,14 +304,14 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
-        let storageRef = FIRStorage.storage().reference(forURL: photoURL)
-        storageRef.data(withMaxSize: INT64_MAX){ (data, error) in
+        let storageRef = Storage.storage().reference(forURL: photoURL)
+        storageRef.getData(maxSize: INT64_MAX){ (data, error) in
             if let error = error {
                 print("Error downloading image data: \(error)")
                 return
             }
             
-            storageRef.metadata(completion: { (metadata, metadataErr) in
+            storageRef.getMetadata(completion: { (metadata, metadataErr) in
                 if let error = metadataErr {
                     print("Error downloading metadata: \(error)")
                     return
@@ -428,8 +427,8 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
             if let key = sendPhotoMessage() {
                 asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
                     let imageFileURL = contentEditingInput?.fullSizeImageURL
-                    let path = "\(self.fbEvent.key)/chats/\(FIRAuth.auth()!.currentUser!.uid)\(Int(Date.timeIntervalSinceReferenceDate * 1000))\(photoReferenceUrl.lastPathComponent)"
-                        self.storageRef.child(path).putFile(imageFileURL!, metadata: nil) { (metadata, error) in
+                    let path = "\(self.fbEvent.key)/chats/\(Auth.auth().currentUser!.uid)\(Int(Date.timeIntervalSinceReferenceDate * 1000))\(photoReferenceUrl.lastPathComponent)"
+                        self.storageRef.child(path).putFile(from: imageFileURL!, metadata: nil) { (metadata, error) in
                         if let error = error {
                             print("Error uploading photo: \(error.localizedDescription)")
                             return
@@ -443,10 +442,10 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
             image = self.imageWithImage(sourceImage: image, scaledToWidth: 600)
             if let key = sendPhotoMessage() {
                 let imageData = UIImageJPEGRepresentation(image, 1.0)
-                let imagePath = "\(self.fbEvent.key)/chats/\(FIRAuth.auth()!.currentUser!.uid)\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
-                let metadata = FIRStorageMetadata()
+                let imagePath = "\(self.fbEvent.key)/chats/\(Auth.auth().currentUser!.uid)\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+                let metadata = StorageMetadata()
                 metadata.contentType = "image/jpeg"
-                storageRef.child(imagePath).put(imageData!, metadata: metadata) { (metadata, error) in
+                storageRef.child(imagePath).putData(imageData!, metadata: metadata) { (metadata, error) in
                     if let error = error {
                         print("Error uploading photo: \(error)")
                         return

@@ -14,17 +14,17 @@ import SDWebImage
 
 class UsersViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
-    var ref: FIRDatabaseReference!
-    var items = [FIRDataSnapshot]()
+    var ref: DatabaseReference!
+    var items = [DataSnapshot]()
     var currentUserData : [String : AnyObject]!
     var currentUserKey : String!
-    var fbEvent: FIRDataSnapshot!
+    var fbEvent: DataSnapshot!
     var isShowingFollowers = false
     var isShowingFollowing = false
     var isShowingParticipantList = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref = FIRDatabase.database().reference()
+        self.ref = Database.database().reference()
         
         if !isShowingFollowers && !isShowingFollowing && !isShowingParticipantList {
             self.getUsers()
@@ -72,18 +72,18 @@ class UsersViewController: UIViewController, UITableViewDataSource {
         self.ref.child("Users").observe(.value, with: {(snapshot) -> Void in
             SVProgressHUD.dismiss()
             print(snapshot)
-            var newItems = [FIRDataSnapshot]()
+            var newItems = [DataSnapshot]()
             for item in snapshot.children {
-                let user = item as! FIRDataSnapshot
-                if user.key != FIRAuth.auth()?.currentUser!.uid {
+                let user = item as! DataSnapshot
+                if user.key != Auth.auth().currentUser!.uid {
                     if let followingArray = self.currentUserData["following"] as? NSMutableArray {
                         if followingArray.contains(user.key) {
                             newItems.append(user)
                         }
                     }
                 }else{
-                    self.currentUserData = (item as! FIRDataSnapshot).value as! [String : AnyObject]
-                    self.currentUserKey = (item as! FIRDataSnapshot).key
+                    self.currentUserData = (item as! DataSnapshot).value as! [String : AnyObject]
+                    self.currentUserKey = (item as! DataSnapshot).key
                 }
             }
             self.items = newItems
@@ -97,19 +97,19 @@ class UsersViewController: UIViewController, UITableViewDataSource {
         self.ref.child("Users").observe(.value, with: {(snapshot) -> Void in
             SVProgressHUD.dismiss()
             print(snapshot)
-            var newItems = [FIRDataSnapshot]()
+            var newItems = [DataSnapshot]()
             for item in snapshot.children {
-                let user = item as! FIRDataSnapshot
-                if user.key != FIRAuth.auth()?.currentUser!.uid {
+                let user = item as! DataSnapshot
+                if user.key != Auth.auth().currentUser!.uid {
                     let individual = user.value as! [String : AnyObject]
                     if let followingArray = individual["following"] as? [String] {
-                        if followingArray.contains(FIRAuth.auth()!.currentUser!.uid) {
+                        if followingArray.contains(Auth.auth().currentUser!.uid) {
                             newItems.append(user)
                         }
                     }
                 }else{
-                    self.currentUserData = (item as! FIRDataSnapshot).value as! [String : AnyObject]
-                    self.currentUserKey = (item as! FIRDataSnapshot).key
+                    self.currentUserData = (item as! DataSnapshot).value as! [String : AnyObject]
+                    self.currentUserKey = (item as! DataSnapshot).key
                 }
             }
             self.items = newItems
@@ -122,14 +122,14 @@ class UsersViewController: UIViewController, UITableViewDataSource {
         self.ref.child("Users").observe(.value, with: {(snapshot) -> Void in
             SVProgressHUD.dismiss()
             print(snapshot)
-            var newItems = [FIRDataSnapshot]()
+            var newItems = [DataSnapshot]()
             for item in snapshot.children {
-                let user = item as! FIRDataSnapshot
-                if user.key != FIRAuth.auth()?.currentUser!.uid {
-                    newItems.append(item as! FIRDataSnapshot)
+                let user = item as! DataSnapshot
+                if user.key != Auth.auth().currentUser!.uid {
+                    newItems.append(item as! DataSnapshot)
                 }else{
-                    self.currentUserData = (item as! FIRDataSnapshot).value as! [String : AnyObject]
-                    self.currentUserKey = (item as! FIRDataSnapshot).key
+                    self.currentUserData = (item as! DataSnapshot).value as! [String : AnyObject]
+                    self.currentUserKey = (item as! DataSnapshot).key
                 }
             }
             self.items = newItems
@@ -143,19 +143,19 @@ class UsersViewController: UIViewController, UITableViewDataSource {
         self.ref.child("Users").observe(.value, with: {(snapshot) -> Void in
             SVProgressHUD.dismiss()
             print(snapshot)
-            var newItems = [FIRDataSnapshot]()
+            var newItems = [DataSnapshot]()
             for item in snapshot.children {
-                let user = item as! FIRDataSnapshot
-                if user.key != FIRAuth.auth()?.currentUser!.uid {
+                let user = item as! DataSnapshot
+                if user.key != Auth.auth().currentUser!.uid {
                     var event = self.fbEvent.value as! [String : AnyObject]
                     if let att = event["attendees"] as? [String] {
                         if att.contains(user.key) {
-                            newItems.append(item as! FIRDataSnapshot)
+                            newItems.append(item as! DataSnapshot)
                         }
                     }
                 }else{
-                    self.currentUserData = (item as! FIRDataSnapshot).value as! [String : AnyObject]
-                    self.currentUserKey = (item as! FIRDataSnapshot).key
+                    self.currentUserData = (item as! DataSnapshot).value as! [String : AnyObject]
+                    self.currentUserKey = (item as! DataSnapshot).key
                 }
             }
             self.items = newItems
@@ -178,7 +178,7 @@ class UsersViewController: UIViewController, UITableViewDataSource {
         print(sender.tag)
     }
     
-    func followUser(userToFollow: FIRDataSnapshot) {
+    func followUser(userToFollow: DataSnapshot) {
         if let following = self.currentUserData["following"] as? NSMutableArray {
             following.add(userToFollow.key)
             let childUpdates = ["/Users/\(self.currentUserKey!)/following": following]
@@ -190,13 +190,13 @@ class UsersViewController: UIViewController, UITableViewDataSource {
             ref.updateChildValues(childUpdates)
         }
         
-        pushNotificationToUser(userTo: userToFollow, content: "<b>\(FIRAuth.auth()!.currentUser!.displayName!)</b> is now following you")
+        pushNotificationToUser(userTo: userToFollow, content: "<b>\(Auth.auth().currentUser!.displayName!)</b> is now following you")
         
         
     }
 
     
-    func unfollowUser(userToFollow: FIRDataSnapshot) {
+    func unfollowUser(userToFollow: DataSnapshot) {
         if let following = self.currentUserData["following"] as? NSMutableArray {
             following.remove(userToFollow.key)
             let childUpdates = ["/Users/\(self.currentUserKey!)/following": following]

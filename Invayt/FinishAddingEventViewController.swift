@@ -11,7 +11,7 @@ import SJSegmentedScrollView
 import Firebase
 import FirebaseDatabase
 class FinishAddingEventViewController: SJSegmentedViewController {
-    var createdEvent : FIRDatabaseReference!
+    var createdEvent : DatabaseReference!
     var image : UIImage!
     
     var selectedSegment: SJSegmentTab?

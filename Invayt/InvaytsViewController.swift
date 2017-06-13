@@ -14,17 +14,17 @@ class InvaytsViewController: BaseViewController {
     @IBOutlet weak var stackView: UIStackView!
     
 
-    private var swipeView: DMSwipeCardsView<FIRDataSnapshot>!
+    private var swipeView: DMSwipeCardsView<DataSnapshot>!
     private var count = 0
-    var ref: FIRDatabaseReference!
-    var items = [FIRDataSnapshot]()
+    var ref: DatabaseReference!
+    var items = [DataSnapshot]()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-        self.ref = FIRDatabase.database().reference()
+        self.ref = Database.database().reference()
         self.getEvents()
         self.title = "Invayts"
-        let viewGenerator: (FIRDataSnapshot, CGRect) -> (UIView) = { (element: FIRDataSnapshot, frame: CGRect) -> (UIView) in
+        let viewGenerator: (DataSnapshot, CGRect) -> (UIView) = { (element: DataSnapshot, frame: CGRect) -> (UIView) in
             let container : Invayt = Invayt(frame: CGRect(x: 30, y: 0, width: frame.width - 60, height: frame.height - 100))
             let invayt = element.value as! [String : AnyObject]
             print(invayt)
@@ -89,7 +89,7 @@ class InvaytsViewController: BaseViewController {
         }
         
         let frame = CGRect(x: 0, y: 10, width: self.view.frame.width, height: self.view.frame.height - 160)
-        swipeView = DMSwipeCardsView<FIRDataSnapshot>(frame: frame,
+        swipeView = DMSwipeCardsView<DataSnapshot>(frame: frame,
                                              viewGenerator: viewGenerator,
                                              overlayGenerator: overlayGenerator)
         swipeView.delegate = self
@@ -117,9 +117,9 @@ class InvaytsViewController: BaseViewController {
         self.ref.child("invayts").queryOrdered(byChild: "timestamp").observe(.value, with: {(snapshot) -> Void in
             SVProgressHUD.dismiss()
             for item in snapshot.children {
-                let invayt = item as! FIRDataSnapshot
+                let invayt = item as! DataSnapshot
                 let object = invayt.value as! [String: String]
-                if object["userTo"] == FIRAuth.auth()?.currentUser!.uid {
+                if object["userTo"] == Auth.auth().currentUser!.uid {
                     self.swipeView.addCards([invayt])
                     self.stackView.isHidden = false
                     //var elements = []
@@ -139,7 +139,7 @@ extension InvaytsViewController: DMSwipeCardsViewDelegate {
     
     
     func swipedLeft(_ object: Any) {
-        let iObject = object as! FIRDataSnapshot
+        let iObject = object as! DataSnapshot
         print("Swiped left: \(object)")
         let key = iObject.key
         self.ref.child("invayts/\(key)").removeValue()
@@ -147,16 +147,16 @@ extension InvaytsViewController: DMSwipeCardsViewDelegate {
     
     func swipedRight(_ object: Any) {
         print("Swiped right: \(object)")
-        let iObject = object as! FIRDataSnapshot
+        let iObject = object as! DataSnapshot
         let key = iObject.key
         let o = iObject.value as! [String : AnyObject]
         if let attendees = o["attendees"] as? NSMutableArray {
-            attendees.add(FIRAuth.auth()!.currentUser!.uid)
+            attendees.add(Auth.auth().currentUser!.uid)
             let childUpdates = ["/events/\(key)/attendees": attendees]
             ref.updateChildValues(childUpdates)
         } else {
             let attendees : NSMutableArray = []
-            attendees.add(FIRAuth.auth()!.currentUser!.uid)
+            attendees.add(Auth.auth().currentUser!.uid)
             let childUpdates = ["/events/\(key)/attendees": attendees]
             ref.updateChildValues(childUpdates)
         }
@@ -167,7 +167,7 @@ extension InvaytsViewController: DMSwipeCardsViewDelegate {
     func cardTapped(_ object: Any) {
         print("Tapped on: \(object)")
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "EventDetailsViewController") as! EventDetailsViewController
-        vc.fbEvent = object as! FIRDataSnapshot
+        vc.fbEvent = object as! DataSnapshot
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

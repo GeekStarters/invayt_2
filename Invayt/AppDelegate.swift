@@ -20,20 +20,20 @@ import Bugsnag
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var ref: FIRDatabaseReference!
+    var ref: DatabaseReference!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         Bugsnag.start(withApiKey: "1ba61549bd0283ad06903d3a34298cd1")
         
-        FIRApp.configure()
+        FirebaseApp.configure()
         OneSignal.initWithLaunchOptions(launchOptions, appId: "8dfd5f2c-702c-4ce7-a52b-cd57d9b7a7c5")
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        Fabric.with([Twitter.self, Branch.self])
+        //Fabric.with([Twitter.self, Branch.self])
         Bugsee.launch(token :"0f8e1516-4091-4985-bceb-505f732222b2")
 
-        if (FIRAuth.auth()?.currentUser) != nil {
+        if (Auth.auth().currentUser) != nil {
             // User is signed in.
             
             
@@ -42,15 +42,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
-            ref = FIRDatabase.database().reference()
+            ref = Database.database().reference()
             let status: OSPermissionSubscriptionState = OneSignal.getPermissionSubscriptionState()
             if status.permissionStatus.hasPrompted {
                 if status.permissionStatus.status == .authorized {
                     let userID = status.subscriptionStatus.userId
-                    let childUpdates = ["/Users/\(FIRAuth.auth()!.currentUser!.uid)/token": userID!]
+                    let childUpdates = ["/Users/\(Auth.auth().currentUser!.uid)/token": userID!]
                     ref.updateChildValues(childUpdates)
-                    OneSignal.syncHashedEmail(FIRAuth.auth()?.currentUser?.email)
-                    OneSignal.sendTag("user_token", value: FIRAuth.auth()?.currentUser?.uid)
+                    OneSignal.syncHashedEmail(Auth.auth().currentUser?.email)
+                    OneSignal.sendTag("user_token", value: Auth.auth().currentUser?.uid)
                 }
             }
             
@@ -80,6 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         // For Branch to detect when a URI scheme is clicked
         Branch.getInstance().handleDeepLink(url as URL!)
+        print("URL: \(url)")
         // do other deep link routing for the Facebook SDK, Pinterest SDK, etc
         return true
     }
@@ -87,6 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: @escaping ([AnyObject]?) -> Void) -> Bool {
         // For Branch to detect when a Universal Link is clicked
         Branch.getInstance().continue(userActivity)
+        print("URL:2 \(userActivity)")
         return true
     }
 

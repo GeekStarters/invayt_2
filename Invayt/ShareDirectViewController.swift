@@ -11,10 +11,8 @@ import Firebase
 import FirebaseDatabase
 import Font_Awesome_Swift
 import Branch
-
-import FacebookCore
 import FBSDKShareKit
-import FacebookLogin
+import FBSDKLoginKit
 class ShareDirectViewController: UIViewController {
     
     @IBOutlet weak var imageV: UIImageView!
@@ -24,7 +22,7 @@ class ShareDirectViewController: UIViewController {
     @IBOutlet weak var whatsAPp: UIButton!
     @IBOutlet weak var comment: UITextView!
     
-    var createdEvent : FIRDatabaseReference!
+    var createdEvent : DatabaseReference!
     var image : UIImage!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,22 +46,22 @@ class ShareDirectViewController: UIViewController {
 
     
     @IBAction func shareOnFacebook(_ sender: Any) {
-        if FBSDKAccessToken.current().hasGranted("publish_actions") {
-            self.shareFB()
-        } else {
-            let loginManager = LoginManager()
-            loginManager.logIn([ .publishActions ], viewController: self) { loginResult in
-                switch loginResult {
-                case .failed(let error):
-                    print(error)
-                case .cancelled:
-                    print("User cancelled login.")
-                case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-                    print("Logged in!")
-                    self.shareFB()
-                }
-            }
-        }
+//        if FBSDKAccessToken.current().hasGranted("publish_actions") {
+//            self.shareFB()
+//        } else {
+//            let loginManager = LoginManager()
+//            loginManager.logIn([ .publishActions ], viewController: self) { loginResult in
+//                switch loginResult {
+//                case .failed(let error):
+//                    print(error)
+//                case .cancelled:
+//                    print("User cancelled login.")
+//                case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+//                    print("Logged in!")
+//                    self.shareFB()
+//                }
+//            }
+//        }
     }
     
     

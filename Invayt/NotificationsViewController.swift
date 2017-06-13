@@ -13,11 +13,11 @@ import FirebaseDatabase
 class NotificationsViewController: BaseViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var ref: FIRDatabaseReference!
-    var items = [FIRDataSnapshot]()
+    var ref: DatabaseReference!
+    var items = [DataSnapshot]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref = FIRDatabase.database().reference()
+        self.ref = Database.database().reference()
         self.getNotificatons()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
@@ -49,12 +49,12 @@ class NotificationsViewController: BaseViewController, UITableViewDataSource {
     
     func getNotificatons() {
         SVProgressHUD.show()
-        self.ref.child("notifications/\(FIRAuth.auth()!.currentUser!.uid)").queryOrdered(byChild: "timestamp").observe(.value, with: {(snapshot) -> Void in
+        self.ref.child("notifications/\(Auth.auth().currentUser!.uid)").queryOrdered(byChild: "timestamp").observe(.value, with: {(snapshot) -> Void in
             SVProgressHUD.dismiss()
             print(snapshot)
-            var newItems = [FIRDataSnapshot]()
+            var newItems = [DataSnapshot]()
             for item in snapshot.children {
-                newItems.append(item as! FIRDataSnapshot)
+                newItems.append(item as! DataSnapshot)
             }
             self.items = newItems
             self.tableView.reloadData()
